@@ -1,0 +1,276 @@
+/* ===============================================
+   COMPONENT STYLES
+   =============================================== */
+
+/* Button Components */
+.button:hover .button-arrow {
+  transform: translateX(2px);
+}
+
+.button.is-back:hover .button-arrow-back {
+  transform: translateX(-2px);
+}
+
+/* Swiper Components */
+.swiper-pagination {
+  position: static !important;
+  width: auto !important;
+}
+
+/* Navigation Components */
+/* Changes nav link/dropdown toggle padding for narrow desktop widths */
+@media (min-width: 991px) and (max-width: 1184px) {
+  .navn_dropdown-toggle,
+  .navn_link {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    gap: 0.25rem;
+  }
+}
+
+/* Hides dropdown icon at narrow desktop widths */
+@media (min-width: 991px) and (max-width: 1032px) {
+  .navn_dropdown-icon {
+    display: none;
+  }
+
+  .navn_menu {
+    padding-left: 1rem;
+  }
+}
+
+/* Card Components */
+/* Visually align paragraph text to heading in full width card */
+@media (min-width: 992px) {
+  [data-card="full-width"] p {
+    position: relative;
+    top: 2px;
+  }
+}
+
+/* CMS Landing Page Components */
+.cms-lp__latest_card-wr:last-child .cms-lp__latest_card_line {
+  display: none;
+}
+
+.cms-lp__card:hover .cms-lp__arrow-wr,
+.cms-lp__latest_card:hover .cms-lp__arrow-wr,
+.allintegr_upcoming_card:hover .cms-lp__arrow-wr {
+  border-color: #abaaa8;
+  background-color: #eaeae9;
+}
+
+.cms-lp__latest_card-wr--first:hover .button {
+  background-color: #eaeae9;
+  border: solid 1px #abaaa8;
+}
+
+.cms-lp__latest_card-wr--first:hover .button .button-arrow {
+  transform: translateX(2px);
+}
+
+/* Filter Components */
+.filter_dd-toggle.w--open .filter_dd-arrow {
+  transform: rotateZ(180deg);
+}
+
+.filter_checkbox-sort.w--current {
+  color: #FF6E06 !important;
+}
+
+.filter_checkbox-lable:has(input:checked) + .filter_checkbox-btn {
+  border-color: #FF6E06 !important;
+}
+
+/* Auto Complete Components */
+.auto-complete_wrapper > ul > li mark {
+  color: #FF6E06 !important;
+}
+
+/* Load More Button */
+.global_load-more-btn:hover .arrow-down_icon {
+  transform: translateY(2px);
+}
+
+/* List Components */
+.rich-text_blog-reskin ul li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.rich-text_blog-reskin ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 1rem;
+  height: 1rem;
+  background-image: url(https://cdn.prod.website-files.com/624b192df0b0151225c10026/67b374f2cb8a5d7e3a4777bc_bullet-orange.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.list_orange-bullet ul li {
+  background-image: url(https://cdn.prod.website-files.com/624b192df0b0151225c10026/67b5cdffea74154bac9c809d_circle-check.svg);
+  background-position: 0 0px;
+  background-repeat: no-repeat;
+  background-size: 1.5rem 1.5rem;
+  padding-left: 2rem;
+}
+
+.list_orange-bullet_big ul li {
+  background-image: url(https://cdn.prod.website-files.com/624b192df0b0151225c10026/67bd7482de8556b679997500_circle-check_orange.svg);
+  background-position: 0 -2px;
+  background-repeat: no-repeat;
+  background-size: 1.5rem 1.5rem;
+  padding-left: 2rem;
+}
+
+.list_black-bullet_big ul li {
+  background-image: url(https://cdn.prod.website-files.com/624b192df0b0151225c10026/67bd73f6c17570aff76b7476_circle-check_black.svg);
+  background-position: 0 -2px;
+  background-repeat: no-repeat;
+  background-size: 1.5rem 1.5rem;
+  padding-left: 2rem;
+}
+
+.list_orange_medium ul li {
+  background-image: url(https://cdn.prod.website-files.com/624b192df0b0151225c10026/67bd7482de8556b679997500_circle-check_orange.svg);
+  background-position: 0 0px;
+  background-repeat: no-repeat;
+  background-size: 1.5rem 1.5rem;
+  padding-left: 2rem;
+}
+
+.webinar_rich-text ul li {
+  background-image: url(https://cdn.prod.website-files.com/624b192df0b0151225c10026/67c858a4aa24b6bcec550595_Primary%20check.svg);
+  background-position: 0 2px;
+  background-repeat: no-repeat;
+  background-size: 1.25rem 1.25rem;
+  padding-left: 2.25rem;
+}
+
+/* Animation Components */
+@keyframes loop-move-left {
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Pause child animations on hover */
+[data-hover-pause] * {
+  animation-play-state: running;
+}
+
+[data-hover-pause]:hover * {
+  animation-play-state: paused;
+}
+
+/* Rich Text Components */
+/* Blog Rich text - Quote marks START */
+.rich-text_blog-reskin blockquote {
+  position: relative;
+  display: block;
+}
+
+.rich-text_blog-reskin blockquote:before,
+.rich-text_blog-reskin blockquote:after {
+  font-size: 24px;
+  color: #333;
+}
+
+.rich-text_blog-reskin blockquote:before {
+  content: '"';
+  position: absolute;
+  left: -15px;
+  top: 0;
+  padding-left: 2.625rem;
+}
+
+.rich-text_blog-reskin blockquote:after {
+  content: '"';
+}
+
+@media (max-width: 767px) {
+  .rich-text_blog-reskin blockquote:before {
+    padding-left: 1.5rem;
+  }
+}
+/* Blog Rich text - Quote marks FINISH */
+
+/* Dropdown Select Components */
+.dd-select_link.w--current {
+  color: #ff6e06 !important;
+}
+
+/* Use Cases Card Components */
+.use-cases_card:hover .use-cases__arrow-wr {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+/* Navigation Dropdown Components */
+.nav__dd-trigger.w--open .nav__dd_arrow {
+  transform: rotateZ(180deg);
+}
+
+/* Simple Header Components */
+.simple-header {
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.simple-header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.simple-header__logo-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.simple-header__logo-image {
+  height: 32px;
+  width: auto;
+}
+
+.simple-header__nav .button {
+  background-color: #FF6E06;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.simple-header__nav .button:hover {
+  background-color: #e55a00;
+}
+
+/* Logos Tabs Components */
+.logos-tabs_menu::before {
+  content: "Trusted to power integrations at";
+  display: inline-block;
+  margin-right: 0px;
+}
+
+.logos-tabs_link.w--current .logos-tabs_link-underline {
+  width: 100%;
+  transition: width 8s linear; /* compare with js, should be the same */
+  opacity: 1;
+}
+
+.logos-tabs_link .logos-tabs_link-underline {
+  width: 0%;
+  transition: width 0.2s ease;
+  opacity: 0;
+}

@@ -75,16 +75,16 @@
 }
 
 .filter_checkbox-sort.w--current {
-  color: #FF6E06 !important;
+  color: #1e3a8a !important;
 }
 
 .filter_checkbox-lable:has(input:checked) + .filter_checkbox-btn {
-  border-color: #FF6E06 !important;
+  border-color: #1e3a8a !important;
 }
 
 /* Auto Complete Components */
 .auto-complete_wrapper > ul > li mark {
-  color: #FF6E06 !important;
+  color: #1e3a8a !important;
 }
 
 /* Load More Button */
@@ -224,6 +224,28 @@
   z-index: 100;
 }
 
+/* Hero Section - Full Viewport Height */
+.home__hero {
+  min-height: calc(100vh - 80px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+.home__hero .padding-global {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+}
+
+.home__hero-container {
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+
 .simple-header__container {
   display: flex;
   justify-content: space-between;
@@ -238,12 +260,12 @@
 }
 
 .simple-header__logo-image {
-  height: 32px;
+  height: 64px;
   width: auto;
 }
 
 .simple-header__nav .button {
-  background-color: #FF6E06;
+  background-color: #1e3a8a;
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
@@ -273,4 +295,25 @@
   width: 0%;
   transition: width 0.2s ease;
   opacity: 0;
+}
+
+/* Integration Diagram Styles */
+.integration-diagram { 
+  position: relative; 
+  padding: 24px 0; 
+}
+
+.integration-diagram__frame {
+  max-width: 1200px; 
+  margin: 0 auto; 
+  background: #fff; 
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.04);
+  overflow: visible;
+}
+
+.integration-diagram__svg { 
+  width: 100%; 
+  height: auto; 
+  display: block; 
 }

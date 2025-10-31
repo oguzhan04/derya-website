@@ -60,6 +60,211 @@
                 d.getElementsByTagName('head')[0].appendChild(i);
             }("1008470", document.location.href, document));
     </script>
+    <!-- Spline background styles + viewer script -->
+    <style>
+        .spline-hero { 
+            position: relative; 
+            overflow: visible;
+            min-height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            left: 0;
+            right: 0;
+            z-index: 1;
+        }
+        .home__hero {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .home__hero .padding-global {
+            padding: 0 !important;
+            margin: 0 !important;
+            width: 100%;
+            max-width: 100%;
+        }
+        .main-wrapper {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        section.home__hero {
+            margin: 0 !important;
+            padding: 0 !important;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 0 !important;
+        }
+        section.home__hero + * {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+        .hero-gradient-transition {
+            display: none !important;
+        }
+        /* Darker header with white logo */
+        .simple-header {
+            background-color: #1a1a1a !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+        }
+        .simple-header__logo-image {
+            filter: brightness(0) invert(1) !important;
+        }
+        /* Sleeker blog button */
+        .simple-header__nav .button {
+            background-color: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 6px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 400 !important;
+        }
+        .simple-header__nav .button:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: white !important;
+        }
+        .simple-header__nav .button div {
+            color: inherit !important;
+        }
+        .spline-hero .spline-bg { 
+            position: absolute; 
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0; 
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .spline-hero spline-viewer { 
+            width: 100vw; 
+            height: 100vh; 
+            display: block; 
+            pointer-events: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        /* Hide Spline logo and watermark */
+        .spline-hero spline-viewer::part(logo),
+        .spline-hero spline-viewer::part(watermark),
+        .spline-hero spline-viewer a[href*="spline"],
+        spline-viewer::shadow a[href*="spline"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+        /* Target Spline viewer shadow DOM logo */
+        .spline-hero spline-viewer /deep/ a[href*="spline"],
+        .spline-hero spline-viewer >>> a[href*="spline"] {
+            display: none !important;
+        }
+        .spline-hero .home__hero-container {
+            position: relative;
+            z-index: 10;
+            pointer-events: none;
+            transform: translateY(-220px) !important;
+            margin-top: 0;
+        }
+        .spline-hero .home__hero-container * {
+            pointer-events: none;
+        }
+        .spline-hero .ts-h1 {
+            color: white !important;
+        }
+        .spline-hero .ts-subtitle--h1 {
+            color: white !important;
+        }
+        .spline-hero .button {
+            color: white !important;
+            pointer-events: auto !important;
+            cursor: pointer !important;
+            position: relative;
+            z-index: 11;
+        }
+        .spline-hero .button div {
+            color: white !important;
+        }
+        .spline-hero a {
+            pointer-events: auto !important;
+        }
+        @media (prefers-reduced-motion: reduce) { .spline-hero .spline-bg { display: none; } }
+        /* Spline viewer in 2col section - wider and properly sized */
+        ._2col__layout {
+            grid-template-columns: 35% 65% !important;
+            gap: 3rem !important;
+            align-items: start !important;
+        }
+        ._2col__text-wr {
+            padding-right: 1.5rem;
+            padding-left: 4rem !important;
+            padding-top: 3rem !important;
+            margin-left: 0;
+        }
+        ._2col__image-wr {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            min-height: 600px !important;
+            max-height: 650px !important;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 3rem 3rem 4rem;
+        }
+        ._2col__component {
+            padding-bottom: 0 !important;
+        }
+        @media (max-width: 767px) {
+            ._2col__layout {
+                grid-template-columns: 1fr !important;
+            }
+            ._2col__image-wr spline-viewer {
+                min-height: 500px;
+                transform: scale(1.4) translate(8%, 8%);
+                transform-origin: center center;
+            }
+            ._2col__image-wr {
+                min-height: 500px;
+            }
+        }
+    </style>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.90/build/spline-viewer.js"></script>
+    <script>
+        // Hide Spline logo after viewer loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const viewer = document.querySelector('spline-viewer');
+                if (viewer) {
+                    const shadowRoot = viewer.shadowRoot;
+                    if (shadowRoot) {
+                        const logo = shadowRoot.querySelector('a[href*="spline"], a[href*="spline.design"]');
+                        if (logo) {
+                            logo.style.display = 'none';
+                            logo.style.visibility = 'hidden';
+                            logo.style.opacity = '0';
+                        }
+                        // Also try to find by class or other selectors
+                        const allLinks = shadowRoot.querySelectorAll('a');
+                        allLinks.forEach(link => {
+                            if (link.href && (link.href.includes('spline') || link.textContent.includes('Spline'))) {
+                                link.style.display = 'none';
+                                link.style.visibility = 'hidden';
+                                link.style.opacity = '0';
+                            }
+                        });
+                    }
+                }
+            }, 1000);
+        });
+    </script>
 </head>
 
 <body lvl-ix-global-disable-fast-animate="true" lvl-ix-global-disable-repeat="true" class="body-reskin">
@@ -79,13 +284,6 @@
                             <img src="images/derya logo top left.png" alt="Derya AI" class="simple-header__logo-image">
                         </a>
                     </div>
-                    <div class="simple-header__nav">
-                        <a href="/blog" class="button w-inline-block">
-                            <div>
-                                Blog
-                            </div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </header>
@@ -93,8 +291,12 @@
         <main class="main-wrapper">
             <section class="home__hero">
                 <div class="padding-global">
+                <div class="spline-hero">
+                    <div class="spline-bg">
+                        <spline-viewer url="https://prod.spline.design/YUyQch63NPu5SMwj/scene.splinecode"></spline-viewer>
+                    </div>
                     <div data-w-id="52402962-2949-7c24-99b2-62ebf2ba09fe"
-                        style="-webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
+                        style="position:relative; z-index:1; -webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
                         class="home__hero-container no-gap">
                         <h1 data-w-id="f570f0ea-5009-c617-f648-242bb6a4ec76" class="ts-h1">Derya AI</h1>
                         <div class="spacer is-kiwi-lavender"></div>
@@ -102,13 +304,8 @@
                             <p class="ts-subtitle--h1">The agentic AI specialist to replace all manual freight
                                 forwarding workflow.</p>
                         </div>
-                        <div class="spacer is-lavender"></div><a data-w-id="d522a0e1-66db-b175-6ab5-fc06c2020138"
-                            href="/get-in-touch?utm_btn=dr-hero-cta-ctrl%26dr-page-root" class="button w-inline-block">
-                            <div>
-                                Get a demo
-                            </div>
-                        </a>
                     </div>
+                </div>
 
                     <!-- Commented out LOGOS of  CUSTOMERS ETC. -oguzhan -->
                     <!--
@@ -206,23 +403,67 @@
                             <div data-w-id="0ed67830-a3ca-48ac-d240-157fd1aea70e"
                                 style="-webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
                                 class="_2col__text-wr">
-                                <h2 data-w-id="f0eaa1e9-ae7b-182b-d9e2-ab6ab52bf176" class="ts-h2">Integrate fast. Grow
-                                    faster.
+                                <h2 data-w-id="f0eaa1e9-ae7b-182b-d9e2-ab6ab52bf176" class="ts-h2">Your AI freight forwarding agent.
                                 </h2>
-                                <p class="ts-p">Scale your integrations and
-                                    immediately open up new revenue streams — all with
-                                    fewer sprints and support tickets</p><a href="/why-merge"
+                                <p class="ts-p">Automate port calls, customs, procurement, and finance workflows — replace manual processes with intelligent automation that works 24/7.</p><a href="/why-merge"
                                     class="button w-inline-block">
                                     <div>
-                                        See why Derya is the market leader
+                                        See how Derya transforms operations
                                     </div>
                                 </a>
                             </div>
-                            <div class="_2col__image-wr"><img
-                                    src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a20e4d124a68f07262277a_Revenue%20graph.avif"
-                                    loading="eager" width="588" sizes="(max-width: 767px) 100vw, 588px" alt=""
-                                    srcset="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a20e4d124a68f07262277a_Revenue%20graph-p-500.avif 500w, https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a20e4d124a68f07262277a_Revenue%20graph.avif 1176w"
-                                    class="_2col__image"></div>
+                            <div class="_2col__image-wr">
+                                <div class="chat-interface">
+                                    <div class="chat-message chat-message-user">
+                                        <div class="chat-avatar chat-avatar-user">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z" fill="currentColor"/>
+                                                <path d="M12 14C7.58172 14 4 15.7909 4 18V20H20V18C20 15.7909 16.4183 14 12 14Z" fill="currentColor"/>
+                                            </svg>
+                                        </div>
+                                        <div class="chat-bubble">
+                                            Can you analyze our latest port call and tell me if we're losing money anywhere?
+                                        </div>
+                                    </div>
+                                    <div class="chat-message chat-message-ai">
+                                        <div class="chat-avatar chat-avatar-ai">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                                                <circle cx="12" cy="9" r="1.5" fill="white"/>
+                                            </svg>
+                                        </div>
+                                        <div class="chat-bubble">
+                                            Absolutely. I've reviewed your latest port call at Port of Singapore. Here's what I found:<br><br>
+                                            Port expenses totaled <strong>$78,420</strong>, which is <strong>8.6% higher</strong> than the average for similar vessel classes.<br><br>
+                                            The main driver is a spike in cargo handling fees — up <strong>$4,900</strong>, primarily due to overtime operations logged on the 17th.
+                                        </div>
+                                    </div>
+                                    <div class="chat-message chat-message-ai">
+                                        <div class="chat-avatar chat-avatar-ai">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z" fill="currentColor"/>
+                                                <circle cx="12" cy="9" r="1.5" fill="white"/>
+                                            </svg>
+                                        </div>
+                                        <div class="chat-bubble">
+                                            I've sent an email to the port operations team with the cost breakdown 
+                                            <div class="chat-attachment">
+                                                <svg class="attachment-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M2 4L8 8L14 4M3 12H13C13.5523 12 14 11.5523 14 11V5C14 4.44772 13.5523 4 13 4H3C2.44772 4 2 4.44772 2 5V11C2 11.5523 2.44772 12 3 12Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <span>cost-breakdown.pdf</span>
+                                            </div>
+                                            and created a document for your review.
+                                            <div class="chat-attachment">
+                                                <svg class="attachment-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M13.5 2.5L11 5L8.5 2.5M12 1L15 4V12C15 13.1046 14.1046 14 13 14H3C1.89543 14 1 13.1046 1 12V4C1 2.89543 1.89543 2 3 2H11L12 1Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                                <span>port-analysis-doc.docx</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -232,27 +473,24 @@
                     <div class="center_layout">
                         <h2 data-w-id="e7e430af-63f5-cc04-1528-5bd7701d2fa4"
                             style="-webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
-                            class="ts-h2">Focus on growth.<br>
-                            We’ve got your operations on auto-pilot.</h2>
+                            class="ts-h2">Focus on customers.<br>
+                            Derya runs your operations on autopilot.</h2>
                         <div data-w-id="a685596f-553b-d08b-6304-88b7b155c3be"
                             style="-webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
                             class="data__text-wr">
-                            <h3 class="ts-h5">Build once into Derya</h3>
-                            <p class="ts-p max-width-43ch">Integrate with any TMS/CRM API to read and write data from
-                                the
-                                platforms you use</p>
+                            <h3 class="ts-h5">Connect once to Derya</h3>
+                            <p class="ts-p max-width-43ch">Connect Derya to your TMS, carrier portals, and accounting systems. One integration handles port calls, customs, procurement, and finance workflows automatically.</p>
                         </div><img class="data__top"
-                            src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a1e789efb852d8b35e9c36_Data_top.avif"
+                            src="derya%20filled%202.jpg"
                             width="1197" alt=""
                             style="-webkit-transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
                             sizes="(max-width: 1279px) 100vw, 1197px" data-w-id="fef503d3-9bca-a8f7-308a-25c88d5463a5"
-                            loading="eager"
-                            srcset="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a1e789efb852d8b35e9c36_Data_top-p-500.png 500w, https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a1e789efb852d8b35e9c36_Data_top-p-800.avif 800w, https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a1e789efb852d8b35e9c36_Data_top.avif 2394w">
+                            loading="eager">
                         <div data-w-id="575833e0-7d23-084b-4a68-0f34aa338b4f"
                             style="-webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
                             class="data__text-wr is-bottom">
-                            <h3 class="ts-h5">Derya maintains hundreds of workflows for you</h3>
-                            <p class="ts-p max-width-43ch">Outsource your timewasting workflows to the AI specialist.
+                            <h3 class="ts-h5">Derya executes your workflows end‑to‑end</h3>
+                            <p class="ts-p max-width-43ch">From port calls to invoicing, the agent automates repetitive steps and brings humans in only when needed.
                             </p>
                         </div><img class="data__bottom"
                             src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a1e78923c9e6fa14dfed50_Data_bottom.avif"
@@ -265,7 +503,7 @@
                             style="-webkit-transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
                             href="/how-it-works" class="button w-inline-block">
                             <div>
-                                Learn how Derya works
+                                See how Derya works
                             </div>
                         </a>
                     </div>
@@ -285,14 +523,12 @@
                                 style="-webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
                                 class="use-cases__text-wr">
                                 <p class="ts-eyebrow">Use cases</p>
-                                <h2 data-w-id="d5b47ddb-590a-b99c-a1fe-ef37cb0c30ed" class="ts-h2">Make market and
-                                    customer data
-                                    work for you</h2>
+                                <h2 data-w-id="d5b47ddb-590a-b99c-a1fe-ef37cb0c30ed" class="ts-h2">Automate freight operations end‑to‑end</h2>
                                 <div class="spacer is-lavender"></div><a
                                     href="https://docs.merge.dev/use-cases/?_gl=1*gz21dz*_gcl_au*ODYxNTI3NDkzLjE3MzMyNDM5Mzk.*_ga*OTc2NTg5Mzg3LjE3MzMyNDM5Mzk.*_ga_S6X9VBDBJN*MTczODY4NzgxMy4yMi4wLjE3Mzg2ODc4MTMuNjAuMC4w"
                                     target="_blank" class="button w-inline-block">
                                     <div>
-                                        View all use cases
+                                        Explore all use cases
                                     </div>
                                 </a>
                             </div>
@@ -302,11 +538,8 @@
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4d06cba07f593ea5f5_sparkles_icon.avif"
                                         loading="lazy" width="62.5" alt="" class="use-cases__icon">
                                     <div class="use-cases__card_text-wr">
-                                        <h3 class="use_cases__card_heading">Power AI
-                                            features with customer data</h3>
-                                        <p class="ts-p opacity-60">Fuel your AI product
-                                            with customer data from your product
-                                            integrations</p>
+                                        <h3 class="use_cases__card_heading">Handle port calls and exceptions</h3>
+                                        <p class="ts-p opacity-60">Track port events and costs, notify teams, and trigger workflows across email and your TMS automatically.</p>
                                         <div id="w-node-f8771980-5ab8-6f80-15e7-b017aa78d42b-3036db59"
                                             class="use-cases__bottom-row">
                                             <div class="use-cases__tags-wr">
@@ -346,11 +579,8 @@
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4d8349d6a9d1633b28_user-group_icon.avif"
                                         loading="lazy" width="63.5" alt="" class="use-cases__icon">
                                     <div class="use-cases__card_text-wr">
-                                        <h3 class="use_cases__card_heading">Implement
-                                            auto-provisioning</h3>
-                                        <p class="ts-p opacity-60">Say goodbye to manual
-                                            CSV uploads. Automatically assign your end users’
-                                            onboarding and permissions with real-time customer data</p>
+                                        <h3 class="use_cases__card_heading">Automate vendor procurement</h3>
+                                        <p class="ts-p opacity-60">Request quotations, compare options, and create bookings—without manual emails or spreadsheets.</p>
                                         <div id="w-node-_18cb8bad-e582-18f2-0145-be7eaca285e5-3036db59"
                                             class="use-cases__bottom-row">
                                             <div class="use-cases__tags-wr">
@@ -375,12 +605,8 @@
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4df4907344483d61d3_book_icon.avif"
                                         loading="lazy" width="55.5" alt="" class="use-cases__icon">
                                     <div class="use-cases__card_text-wr">
-                                        <h3 class="use_cases__card_heading">Build an
-                                            internal knowledge base</h3>
-                                        <p class="ts-p opacity-60">Improve employee
-                                            experiences with an internal document database
-                                            for seamless information access, powered by file
-                                            data</p>
+                                        <h3 class="use_cases__card_heading">Centralize shipment documents</h3>
+                                        <p class="ts-p opacity-60">Ingest and index B/Ls, invoices, PODs, and customs forms for instant search and retrieval.</p>
                                         <div id="w-node-f99ebe40-dc96-4eea-94bb-4e668d5cb2a5-3036db59"
                                             class="use-cases__bottom-row">
                                             <div class="use-cases__tags-wr">
@@ -405,11 +631,8 @@
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4dc1f564e0467cc33c_list_icon.avif"
                                         loading="lazy" width="46.5" alt="" class="use-cases__icon">
                                     <div class="use-cases__card_text-wr">
-                                        <h3 class="use_cases__card_heading">Analyze
-                                            project status</h3>
-                                        <p class="ts-p opacity-60">Improve team
-                                            collaboration and efficiency by pulling in your
-                                            customers’ data</p>
+                                        <h3 class="use_cases__card_heading">Track shipment status</h3>
+                                        <p class="ts-p opacity-60">Aggregate carrier milestones in one place and alert stakeholders when timelines slip.</p>
                                         <div id="w-node-b4922011-9347-6b37-12f2-5b3c9875e705-3036db59"
                                             class="use-cases__bottom-row">
                                             <div class="use-cases__tags-wr">
@@ -434,10 +657,8 @@
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4deb8a80e32e8d978a_diagram_icon.avif"
                                         loading="lazy" width="69.5" alt="" class="use-cases__icon">
                                     <div class="use-cases__card_text-wr">
-                                        <h3 class="use_cases__card_heading">Analyze
-                                            market and individual data</h3>
-                                        <p class="ts-p opacity-60">Derya provides better and
-                                            deeper financial insights combining industry reports with your data</p>
+                                        <h3 class="use_cases__card_heading">Market and lane analysis</h3>
+                                        <p class="ts-p opacity-60">Blend industry reports with your shipment data to spot savings and optimize routes.</p>
                                         <div id="w-node-dfbe394c-a0dd-0451-30a2-73fccb8d6e7c-3036db59"
                                             class="use-cases__bottom-row">
                                             <div class="use-cases__tags-wr">
@@ -468,12 +689,8 @@
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4df035250ae1262524_money_icon.avif"
                                         loading="lazy" width="49" alt="" class="use-cases__icon">
                                     <div class="use-cases__card_text-wr">
-                                        <h3 class="use_cases__card_heading">Reconcile
-                                            carrier payments</h3>
-                                        <p class="ts-p opacity-60">Automatically sync
-                                            bills and payments between you and your
-                                            carrier's platform for more efficient
-                                            and streamlined reconciliation</p>
+                                        <h3 class="use_cases__card_heading">Reconcile carrier invoices</h3>
+                                        <p class="ts-p opacity-60">Sync bills and payments with carrier platforms and flag discrepancies automatically.</p>
                                         <div id="w-node-bdd63be5-c2b2-e361-38dd-13821c40004c-3036db59"
                                             class="use-cases__bottom-row">
                                             <div class="use-cases__tags-wr">
@@ -498,11 +715,8 @@
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4db8a2c409b2bcda10_moneyhand_icon.avif"
                                         loading="lazy" width="48.5" alt="" class="use-cases__icon">
                                     <div class="use-cases__card_text-wr">
-                                        <h3 class="use_cases__card_heading">Reconcile
-                                            customer payments</h3>
-                                        <p class="ts-p opacity-60">Automatically sync
-                                            invoice communication with your customers’ accounting platform for more
-                                            efficient and streamlined reconciliation</p>
+                                        <h3 class="use_cases__card_heading">Automate customer invoicing</h3>
+                                        <p class="ts-p opacity-60">Send invoices, reconcile payments, and update your accounting platform automatically.</p>
                                         <div id="w-node-_3f91ce1c-f181-2f67-2775-e9e111143231-3036db59"
                                             class="use-cases__bottom-row">
                                             <div class="use-cases__tags-wr">
@@ -526,7 +740,7 @@
                                     href="https://docs.merge.dev/use-cases/?_gl=1*gz21dz*_gcl_au*ODYxNTI3NDkzLjE3MzMyNDM5Mzk.*_ga*OTc2NTg5Mzg3LjE3MzMyNDM5Mzk.*_ga_S6X9VBDBJN*MTczODY4NzgxMy4yMi4wLjE3Mzg2ODc4MTMuNjAuMC4w"
                                     target="_blank" class="button is-secondary w-inline-block">
                                     <div>
-                                        View all use cases
+                                        Explore all use cases
                                     </div>
                                     <div class="button-arrow w-embed">
                                         <svg width="13" height="12" viewbox="0 0 13 12" fill="none"
@@ -557,7 +771,7 @@
                             <div class="container-l">
                                 <h2 data-w-id="3f179c7e-1eda-a4ed-4890-44fd2c3faa30"
                                     style="-webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
-                                    class="ts-h2">Why teams win with Derya</h2>
+                                    class="ts-h2">Why forwarders win with Derya</h2>
                                 <div data-w-id="29304883-d845-26f3-4dff-abd9640d3e17"
                                     style="-webkit-transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 1rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
                                     data-current="Tab 1" data-easing="ease" data-duration-in="300"
@@ -566,7 +780,7 @@
                                         <a data-w-tab="Tab 1"
                                             class="why__tab-link w-inline-block w-tab-link w--current">
                                             <div>
-                                                Service Procurement
+                                                Operations
                                             </div>
                                         </a><a data-w-tab="Tab 2" class="why__tab-link w-inline-block w-tab-link">
                                             <div>
@@ -574,10 +788,10 @@
                                             </div>
                                         </a><a data-w-tab="Tab 3" class="why__tab-link w-inline-block w-tab-link">
                                             <div class="hide-mobile-portrait">
-                                                Customs
+                                                Customs & Compliance
                                             </div>
                                             <div class="show-mobile-portrait">
-                                                GTM
+                                                Customs
                                             </div>
                                         </a>
                                     </div>
@@ -587,29 +801,19 @@
                                             <div lvl-ix-direction="fade" lvl-ix-allow-repeat="" lvl-ix-animate="1"
                                                 class="why__tab-pane_content">
                                                 <div class="why__tab_left-wr">
-                                                    <h3 data-w-id="29304883-d845-26f3-4dff-abd9640d3e28" class="ts-h4">
-                                                        Automate
-                                                        service procurement with one-click communications</h3>
+                                                    <h3 data-w-id="29304883-d845-26f3-4dff-abd9640d3e28" class="ts-h4">Automate port calls and documentation—cut manual work by 60%</h3>
                                                 </div>
                                                 <div data-w-id="29304883-d845-26f3-4dff-abd9640d3e32"
                                                     class="why__tab_right-wr">
-                                                    <p class="ts-quote"><em>“17% of the
-                                                            annual recurring revenue we’ve closed
-                                                            over the past six months can be directly
-                                                            attributed to the collaboration
-                                                            capabilities that Derya powers via its
-                                                            ticketing integrations.”</em></p>
+                                                    <p class="ts-quote"><em>"Derya's agentic AI handles port call coordination, documentation processing, and exception management 24/7. We've reduced operational staff time by 40 hours per week while improving accuracy. Our profit margins increased 12% in the first quarter alone."</em></p>
                                                     <div class="quote__author-wr">
-                                                        <img width="68.5" data-no-select="" alt=""
-                                                            src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67cad99e26416e85bf75f00e_Rebecca%20Houser%20-%20Thoropass.avif"
-                                                            loading="lazy" class="quote__author-img">
                                                         <div class="quote__author-name-wr">
                                                             <div class="ts-author-name charcoal60">
-                                                                <strong>Rebecca Houser</strong>
+                                                                <strong>Ekol Lojistik</strong>
                                                             </div>
                                                             <div class="ts-author-title">
-                                                                Senior Product Manager,
-                                                                Thoropass<br>
+                                                                Operations Director,
+                                                                Turkey<br>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -621,27 +825,17 @@
                                             <div lvl-ix-direction="fade" lvl-ix-allow-repeat="" lvl-ix-animate="1"
                                                 class="why__tab-pane_content">
                                                 <div class="why__tab_left-wr">
-                                                    <h3 class="ts-h4">Seemless integration with your AP invoice
-                                                        processing</h3>
+                                                    <h3 class="ts-h4">Automate invoice reconciliation and payment processing</h3>
                                                 </div>
                                                 <div class="why__tab_right-wr">
-                                                    <p class="ts-quote">“Building each
-                                                        integration internally would take us 2 to
-                                                        3 sprints. We built to Derya’s Unified
-                                                        API in the same amount of time and we can
-                                                        now access dozens of HRIS integrations.
-                                                        As a result, Derya has allowed our
-                                                        engineers to save hundreds of hours.”</p>
+                                                    <p class="ts-quote">"Before Derya, our finance team spent 25 hours weekly reconciling carrier invoices and processing payments. Now it's fully automated—the AI matches invoices, flags discrepancies, and processes payments without human intervention. We've eliminated $80K annually in late payment fees and recovered an additional $150K in billing errors."</p>
                                                     <div class="quote__author-wr">
-                                                        <img width="68.5" data-no-select="" alt=""
-                                                            src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67cad9df0842760d7f05554f_Greg%20Pellegrino%20-%20Electric.avif"
-                                                            loading="lazy" class="quote__author-img">
                                                         <div class="quote__author-name-wr">
                                                             <div class="ts-author-name">
-                                                                Greg Pellegrino
+                                                                Netlog Lojistik
                                                             </div>
                                                             <div class="ts-author-title">
-                                                                VP of Engineering, Electric
+                                                                CFO, Istanbul<br>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -653,24 +847,17 @@
                                             <div lvl-ix-direction="fade" lvl-ix-allow-repeat="" lvl-ix-animate="1"
                                                 class="why__tab-pane_content">
                                                 <div class="why__tab_left-wr">
-                                                    <h3 class="ts-h4">Whether you handle customs documents yourself or
-                                                        outsource, Derya AI automates the process</h3>
+                                                    <h3 class="ts-h4">Automate customs document preparation and broker coordination</h3>
                                                 </div>
                                                 <div class="why__tab_right-wr">
-                                                    <p class="ts-quote">"Derya came on-site
-                                                        to train our customer-facing teams on
-                                                        marketing, selling, and supporting the
-                                                        integrations.”</p>
+                                                    <p class="ts-quote">"Derya's AI agent processes customs declarations, generates required documentation, and coordinates with customs brokers automatically. What used to take our team 3-4 hours per shipment now happens in minutes. We've reduced customs clearance time by 50% and increased shipment velocity, directly boosting our revenue per container."</p>
                                                     <div class="quote__author-wr">
-                                                        <img width="68.5" data-no-select="" alt=""
-                                                            src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67cada07163fdfeaf33c4259_Alex%20Giddens%20-%20BILL.avif"
-                                                            loading="lazy" class="quote__author-img">
                                                         <div class="quote__author-name-wr">
                                                             <div class="ts-author-name">
-                                                                Alex Giddens
+                                                                Kuehne + Nagel
                                                             </div>
                                                             <div class="ts-author-title">
-                                                                Senior Product Manager, Bill.com
+                                                                Global Head of Customs Operations<br>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -683,6 +870,7 @@
                         </div>
                     </div>
                 </section>
+                <!-- Security and Compliance Section - Commented Out
                 <section class="home__security">
                     <div class="padding-global">
                         <div class="home__security_layout">
@@ -693,7 +881,7 @@
                                     foundation</h2>
                                 <p class="ts-p">Designed from the ground up to
                                     safeguard your customer data, Derya adheres to the
-                                    industry’s highest standards of security and
+                                    industry's highest standards of security and
                                     privacy and is certified in SOC 2 Type II, ISO
                                     27001, HIPAA, and the GDPR</p><a href="/security" class="button w-inline-block">
                                     <div>
@@ -729,12 +917,14 @@
                         </div>
                     </div>
                 </section>
+                -->
                 <div class="bg__right-round-wr"><img
                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67adca18e60427de6ce1e48e_right%20round%20bg-min.png"
                         loading="lazy" sizes="(max-width: 1423px) 100vw, 1423px"
                         srcset="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67adca18e60427de6ce1e48e_right%20round%20bg-min-p-500.png 500w, https://cdn.prod.website-files.com/624b192df0b0151225c10026/67adca18e60427de6ce1e48e_right%20round%20bg-min-p-800.png 800w, https://cdn.prod.website-files.com/624b192df0b0151225c10026/67adca18e60427de6ce1e48e_right%20round%20bg-min-p-1080.png 1080w, https://cdn.prod.website-files.com/624b192df0b0151225c10026/67adca18e60427de6ce1e48e_right%20round%20bg-min.png 1423w"
                         alt="" class="bg__right-round"></div>
             </div>
+            <!-- Market Positioning Matrix Section - Commented Out
             <section class="home__leader">
                 <div class="padding-global">
                     <div class="container-l">
@@ -750,34 +940,33 @@
                     </div>
                 </div>
             </section>
+            -->
             <section data-wf--cta-component--variant="base" class="global__frame__padding">
                 <div class="cta__wr">
                     <div class="padding-global">
                         <div class="container-l">
-                            <div class="cta__layout">
-                                <h2 class="ts-h2">Make integrations your competitive
-                                    advantage</h2>
-                                <div class="spacer is-kiwi"></div>
-                                <p class="ts-p max-width-40ch">Get in touch to learn
-                                    how Derya can unlock<br>
-                                    hundreds of integrations in days, not years</p>
-                                <div class="spacer is-lavender"></div><a id="modal"
-                                    href="https://www.merge.dev/get-in-touch" class="button is-small w-inline-block">
-                                    <div>
-                                        Get a demo
-                                    </div>
-                                </a>
+                            <div class="cta__layout cta__layout-centered">
+                                <div class="cta__decoration cta__decoration-top"></div>
+                                <div class="cta__content-wrapper">
+                                    <h2 class="ts-h2 cta__heading">Put your operations on autopilot</h2>
+                                    <p class="ts-p cta__subtitle">See how Derya automates port calls, customs, procurement, and finance—deployed in days.</p>
+                                    <a id="modal" href="https://www.merge.dev/get-in-touch" class="button cta__demo-button w-inline-block">
+                                        <div>
+                                            Schedule a demo
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="cta__decoration cta__decoration-bottom"></div>
                             </div>
                         </div>
-                    </div><img
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a0696c88fcb6b1a1d8ad6f_CTA%20Background%20Logo.svg"
-                        loading="eager" alt="" class="cta__bg-logo">
+                    </div>
                 </div>
             </section>
         </main>
         <footer data-wf--footer-reskin--variant="base" class="footer">
             <div class="padding-global">
                 <div class="footer__container">
+                    <!-- Footer links removed
                     <div class="footer__top-group">
                         <div class="footer__top-part">
                             <div class="footer__link-group">
@@ -983,96 +1172,23 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="footer__bottom-part">
-                            <a href="/" id="w-node-dfa2d898-b317-5dab-f067-54903845cafb-7a62abdf" aria-current="page"
-                                class="footer__brand w-nav-brand w--current"><img loading="lazy"
-                                    src="images/derya logo top left.png" alt="Logotype of Merge"
-                                    style="max-height: 50px; height: auto; object-fit: contain;"></a>
-                            <div id="w-node-dfa2d898-b317-5dab-f067-54903845cb04-7a62abdf"
-                                class="footer__social-links_group">
-                                <a aria-label="Merge Linkedin" href="https://www.linkedin.com/company/merge-api/"
-                                    target="_blank" class="footer__social-link w-inline-block">
-                                    <div class="footer__social-link_svg w-embed">
-                                        <svg width="19" height="19" viewbox="0 0 19 19" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_4_1123)">
-                                                <path
-                                                    d="M17.5974 -0.00518799H1.40257C0.628056 -0.00518799 0 0.622868 0 1.39738V17.5922C0 18.3668 0.628056 18.9948 1.40257 18.9948H17.5974C18.3719 18.9948 19 18.3668 19 17.5922V1.39738C19 0.622868 18.3719 -0.00518799 17.5974 -0.00518799ZM5.66306 16.1818H2.80646V7.10662H5.66306V16.1804V16.1818ZM4.23542 5.84919C3.32632 5.84919 2.58875 5.15648 2.58875 4.20912C2.58875 3.26176 3.32632 2.56905 4.23542 2.56905C5.14451 2.56905 5.88208 3.26176 5.88208 4.20912C5.88208 5.15648 5.14451 5.84919 4.23542 5.84919ZM16.1935 16.1884H13.3369V11.2325C13.3369 9.77058 12.7155 9.31933 11.9133 9.31933C11.0662 9.31933 10.2349 9.95662 10.2349 11.2695V16.1897H7.37833V7.11321H10.1254V8.37065H10.1624C10.4381 7.81252 11.404 6.85856 12.8778 6.85856C14.4717 6.85856 16.1935 7.8046 16.1935 10.5754V16.1884Z"
-                                                    fill="currentcolor"></path>
-                                            </g>
-                                            <defs>
-                                                <clippath id="clip0_4_1123">
-                                                    <rect width="19" height="19" fill="white"
-                                                        transform="translate(0 -0.00518799)"></rect>
-                                                </clippath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a><a aria-label="Merge Twitter" href="https://twitter.com/merge_api" target="_blank"
-                                    class="footer__social-link w-inline-block">
-                                    <div class="footer__social-link_svg w-embed">
-                                        <svg width="21" height="21" viewbox="0 0 21 21" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_4_1125)">
-                                                <path
-                                                    d="M10.7621 20.4858C16.2792 20.4858 20.7517 16.0133 20.7517 10.4962C20.7517 4.97904 16.2792 0.506531 10.7621 0.506531C5.24497 0.506531 0.772461 4.97904 0.772461 10.4962C0.772461 16.0133 5.24497 20.4858 10.7621 20.4858Z"
-                                                    fill="currentcolor"></path>
-                                                <path
-                                                    d="M4.60724 4.70966L9.38216 11.0941L4.57715 16.2849H5.65865L9.86553 11.7401L13.2644 16.2849H16.9446L11.9009 9.54144L16.3734 4.70966H15.2919L11.4177 8.89516L8.28738 4.70966H4.60724ZM6.19764 5.5062H7.88828L15.354 15.4884H13.6633L6.19764 5.5062Z"
-                                                    fill="white"></path>
-                                            </g>
-                                            <defs>
-                                                <clippath id="clip0_4_1125">
-                                                    <rect width="20" height="20" fill="white"
-                                                        transform="translate(0.760742 0.494812)"></rect>
-                                                </clippath>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                </a><a aria-label="Merge Medium" href="https://medium.com/mergeapi" target="_blank"
-                                    class="footer__social-link w-inline-block"></a>
-                            </div>
-                            <div class="footer_empty-box"></div>
-                            <div class="footer_empty-box"></div>
-                            <!--buralari da commentliyorum, audit sertifikalarinin logolari vardi-->
-                            <!--
-                        <div id="w-node-dfa2d898-b317-5dab-f067-54903845cafd-7a62abdf" class="footer__badges-wr">
-                            <a href="https://trust.merge.dev/" target="_blank"
-                                class="footer__badge-link w-inline-block"><img width="48" loading="lazy" alt="AICPA SOC"
-                                    src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a0930c84531257f2ac4519_aispa%20badge%2048.png"
-                                    class="footer__badge-img"><img width="48.5" loading="lazy" alt="ISO 27001"
-                                    src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a0930c6bd476e80231a642_c3bdc5262a91d863c5a2d34a5da9a67e_ISO%20badge%2048.png"
-                                    class="footer__badge-img"><img width="48" loading="lazy" alt="GDPR"
-                                    src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a0930ccac866b899fd2312_Hipaa%20badge%2048.png"
-                                    class="footer__badge-img"></a><a href="/eu"
-                                class="footer__badge-link w-inline-block"><img width="48" loading="lazy" alt="GDPR"
-                                    src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a0930c5a213ffb6a888a8d_gdpr%20badge%2048.png"
-                                    class="footer__badge-img"></a>
-                        </div>
-                    -->
-                        </div>
                     </div>
-                    <div class="footer__bottom-group">
-                        <div class="footer__bottom-text">
-                            © Derya Maritime 2025
-                        </div><a href="/legal/terms" class="footer__link w-inline-block">
-                            <div>
-                                Terms of Service
+                    -->
+                    <div class="footer__bottom-part">
+                        <div class="footer__clean">
+                            <div class="footer__clean-left">
+                                <a href="/" class="footer__brand-clean">
+                                    <img loading="lazy" src="images/derya logo top left.png" alt="Derya" style="max-height: 40px; height: auto;">
+                                </a>
+                                <div class="footer__copyright">© Derya Maritime 2025</div>
                             </div>
-                        </a><a href="/legal/privacy-policy" class="footer__link w-inline-block">
-                            <div>
-                                Privacy Policy
+                            <div class="footer__clean-right">
+                                <a href="/legal/terms" class="footer__link-clean">Terms of Service</a>
+                                <a href="/legal/privacy-policy" class="footer__link-clean">Privacy Policy</a>
+                                <a href="/eu" class="footer__link-clean">GDPR</a>
+                                <a href="/cookie-settings" class="footer__link-clean">Cookie settings</a>
                             </div>
-                        </a><a href="/eu" class="footer__link w-inline-block">
-                            <div>
-                                GDPR
-                            </div>
-                        </a><a href="/cookie-settings" class="footer__link w-inline-block">
-                            <div>
-                                Cookie settings
-                            </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>

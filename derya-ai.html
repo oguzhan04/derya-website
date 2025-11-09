@@ -527,7 +527,7 @@
                                 <div class="spacer is-lavender"></div>
                             </div>
                             <div class="use-cases__cards-wr">
-                                <a data-card="full-width" href="/train-ai-models"
+                                <a data-card="full-width" href="#"
                                     class="use-cases_card w-inline-block"><img
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4d06cba07f593ea5f5_sparkles_icon.avif"
                                         loading="lazy" width="62.5" alt="" class="use-cases__icon">
@@ -558,7 +558,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a><a data-card="full-width" href="/use-case/auto-provisioning"
+                                </a><a data-card="full-width" href="#"
                                     class="use-cases_card w-inline-block"><img
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4d8349d6a9d1633b28_user-group_icon.avif"
                                         loading="lazy" width="63.5" alt="" class="use-cases__icon">
@@ -574,7 +574,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a><a data-card="full-width" href="/use-case/internal-database"
+                                </a><a data-card="full-width" href="#"
                                     class="use-cases_card w-inline-block"><img
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4df4907344483d61d3_book_icon.avif"
                                         loading="lazy" width="55.5" alt="" class="use-cases__icon">
@@ -590,7 +590,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a><a data-card="full-width" href="/use-case/analyze-project-status"
+                                </a><a data-card="full-width" href="#"
                                     class="use-cases_card w-inline-block"><img
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4dc1f564e0467cc33c_list_icon.avif"
                                         loading="lazy" width="46.5" alt="" class="use-cases__icon">
@@ -606,7 +606,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a><a data-card="full-width" href="/use-case/analyze-financials"
+                                </a><a data-card="full-width" href="#"
                                     class="use-cases_card w-inline-block"><img
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4deb8a80e32e8d978a_diagram_icon.avif"
                                         loading="lazy" width="69.5" alt="" class="use-cases__icon">
@@ -628,7 +628,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a><a data-card="full-width" href="/use-case/reconcile-vendor-payments"
+                                </a><a data-card="full-width" href="#"
                                     class="use-cases_card w-inline-block"><img
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4df035250ae1262524_money_icon.avif"
                                         loading="lazy" width="49" alt="" class="use-cases__icon">
@@ -644,7 +644,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </a><a data-card="full-width" href="/use-case/reconcile-customer-payments"
+                                </a><a data-card="full-width" href="#"
                                     class="use-cases_card w-inline-block"><img
                                         src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67a2ee4db8a2c409b2bcda10_moneyhand_icon.avif"
                                         loading="lazy" width="48.5" alt="" class="use-cases__icon">
@@ -1133,9 +1133,6 @@
             // Prevent all clicks on use case cards from navigating
             const useCaseCards = document.querySelectorAll('a.use-cases_card');
             useCaseCards.forEach(function(card) {
-                // Remove href to prevent navigation
-                card.removeAttribute('href');
-                
                 // Prevent any click navigation
                 card.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -1143,9 +1140,17 @@
                     e.stopImmediatePropagation();
                     return false;
                 }, true);
-                
-                // Change cursor to default since it's not clickable
-                card.style.cursor = 'default';
+            });
+            
+            // Prevent clicks on tags inside cards
+            const tags = document.querySelectorAll('.use-cases__tags-wr .ts-tag');
+            tags.forEach(function(tag) {
+                tag.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    return false;
+                }, true);
             });
         });
     </script>

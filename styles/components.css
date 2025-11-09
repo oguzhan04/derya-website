@@ -216,19 +216,17 @@
 }
 
 .use-cases__tags-wr .ts-tag {
-  cursor: default !important;
   user-select: none !important;
+  pointer-events: none !important;
 }
 
 /* Make use case cards unclickable but preserve hover effects */
 a.use-cases_card {
-  cursor: default !important;
   pointer-events: auto !important;
 }
 
 a.use-cases_card:hover {
   /* All hover effects will still work via CSS */
-  cursor: default !important;
 }
 
 /* Navigation Dropdown Components */

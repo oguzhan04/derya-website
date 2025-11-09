@@ -379,8 +379,8 @@ section.home__hero {
 ._2col__layout {
   max-width: 100% !important;
   display: grid !important;
-  grid-template-columns: 35% 65% !important;
-  gap: 3rem !important;
+  grid-template-columns: 48% 52% !important;
+  gap: 2rem !important;
   margin-right: 0 !important;
   align-items: center !important;
   justify-content: center !important;
@@ -390,24 +390,24 @@ section.home__hero {
 ._2col__image-wr {
   position: relative;
   width: 100% !important;
-  max-width: 900px !important;
+  max-width: 85% !important;
   margin-right: auto !important;
   margin-left: auto !important;
   overflow: hidden;
-  min-height: 600px !important;
-  max-height: 650px !important;
+  min-height: 550px !important;
+  max-height: 600px !important;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem 3rem 3rem 4rem;
+  padding: 2rem 2rem 2rem 2.5rem;
   margin-top: 2.5rem !important;
 }
 
 /* Chat Interface Styles */
 .chat-interface {
   width: 100%;
-  max-width: 800px;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -477,11 +477,11 @@ section.home__hero {
 }
 
 .chat-bubble {
-  padding: 1.25rem 1.75rem;
+  padding: 1.25rem 1.5rem;
   border-radius: 20px;
-  max-width: 75%;
-  line-height: 1.6;
-  font-size: 15px;
+  max-width: 85%;
+  line-height: 1.5;
+  font-size: 14px;
   font-weight: 400;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
@@ -611,6 +611,70 @@ section.home__hero {
   margin-left: auto !important;
   margin-right: auto !important;
   margin-top: 2.5rem !important;
+}
+
+/* Responsive styles for laptop/tablet screens */
+@media (max-width: 1200px) {
+  ._2col__layout {
+    grid-template-columns: 50% 50% !important;
+    gap: 1.5rem !important;
+  }
+  
+  ._2col__text-wr {
+    padding-left: 2rem !important;
+    padding-right: 1rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  ._2col__image-wr {
+    max-width: 95% !important;
+    padding: 1.5rem 1.5rem 1.5rem 2rem !important;
+    min-height: 500px !important;
+    max-height: 550px !important;
+  }
+  
+  .chat-interface {
+    max-width: 100%;
+    gap: 1.25rem;
+  }
+  
+  .chat-bubble {
+    max-width: 90%;
+    font-size: 13px;
+    padding: 1rem 1.25rem;
+  }
+}
+
+@media (max-width: 991px) {
+  ._2col__layout {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  
+  ._2col__text-wr {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+    padding-top: 2rem !important;
+    padding-bottom: 1rem !important;
+    max-width: 100% !important;
+    margin-top: 0 !important;
+  }
+  
+  ._2col__image-wr {
+    padding: 2rem !important;
+    min-height: 500px !important;
+    max-height: 550px !important;
+    margin-top: 0 !important;
+  }
+  
+  .chat-interface {
+    max-width: 100%;
+  }
+  
+  .chat-bubble {
+    max-width: 85%;
+  }
 }
 
 /* Sharpen Data Top Image */

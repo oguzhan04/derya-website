@@ -209,6 +209,28 @@
   opacity: 1;
 }
 
+/* Make tags unclickable but preserve hover effects */
+.use-cases__tags-wr {
+  position: relative;
+  z-index: 10;
+}
+
+.use-cases__tags-wr .ts-tag {
+  cursor: default !important;
+  user-select: none !important;
+}
+
+/* Make use case cards unclickable but preserve hover effects */
+a.use-cases_card {
+  cursor: default !important;
+  pointer-events: auto !important;
+}
+
+a.use-cases_card:hover {
+  /* All hover effects will still work via CSS */
+  cursor: default !important;
+}
+
 /* Navigation Dropdown Components */
 .nav__dd-trigger.w--open .nav__dd_arrow {
   transform: rotateZ(180deg);

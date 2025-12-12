@@ -147,6 +147,12 @@
         .simple-header__logo-image {
             filter: brightness(0) invert(1) !important;
         }
+        /* Nav container - side by side buttons */
+        .simple-header__nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
         /* Sleeker blog button */
         .simple-header__nav .button {
             background-color: transparent !important;
@@ -270,6 +276,44 @@
                 min-height: 500px;
             }
         }
+        
+        /* Mobile: Hide Spline and use static gradient background */
+        @media (max-width: 767px) {
+            .spline-hero .spline-bg {
+                display: none !important;
+            }
+            
+            .spline-hero {
+                background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 30%, #1a1a2e 60%, #16213e 100%);
+                background-attachment: fixed;
+                position: relative;
+            }
+            
+            .spline-hero::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: 
+                    radial-gradient(circle at 20% 30%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 70%, rgba(30, 58, 138, 0.15) 0%, transparent 50%);
+                pointer-events: none;
+                z-index: 1;
+            }
+            
+            .spline-hero .home__hero-container {
+                transform: translateY(0) !important;
+                position: relative;
+                z-index: 10;
+                padding: 2rem 1.5rem;
+            }
+            
+            .spline-hero {
+                min-height: 80vh;
+            }
+        }
     </style>
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.90/build/spline-viewer.js"></script>
     <script>
@@ -320,6 +364,9 @@
                         </a>
                     </div>
                     <nav class="simple-header__nav">
+                        <a href="/mailport.html" class="button w-inline-block">
+                            <div>Mailport</div>
+                        </a>
                         <a href="https://deryamaritime.substack.com/" target="_blank" rel="noopener noreferrer" class="button w-inline-block">
                             <div>Blog</div>
                         </a>
@@ -712,6 +759,8 @@
                         srcset="https://cdn.prod.website-files.com/624b192df0b0151225c10026/67af086dbbed97cccdc28939_4d5d30c1439dc0001a5db0ef716c5926_Use%20cases%20bg-full-p-500.png 500w, https://cdn.prod.website-files.com/624b192df0b0151225c10026/67af086dbbed97cccdc28939_4d5d30c1439dc0001a5db0ef716c5926_Use%20cases%20bg-full-p-800.png 800w, https://cdn.prod.website-files.com/624b192df0b0151225c10026/67af086dbbed97cccdc28939_4d5d30c1439dc0001a5db0ef716c5926_Use%20cases%20bg-full-p-1080.png 1080w, https://cdn.prod.website-files.com/624b192df0b0151225c10026/67af086dbbed97cccdc28939_4d5d30c1439dc0001a5db0ef716c5926_Use%20cases%20bg-full.png 1612w"
                         alt="" class="use-cases__bg-img"></div>
             </div>
+            <!-- Testimonials Section - Commented Out -->
+            <!--
             <div class="global__sections-wr">
                 <section class="global__frame__padding">
                     <div data-w-id="af3884a2-0ba5-453a-a347-fc431a5ff6cf"
@@ -820,6 +869,7 @@
                         </div>
                     </div>
                 </section>
+            -->
                 <!-- Security and Compliance Section - Commented Out
                 <section class="home__security">
                     <div class="padding-global">

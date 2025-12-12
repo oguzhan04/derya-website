@@ -146,10 +146,156 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #9ca3af;
-            font-size: 1.125rem;
-            text-align: center;
             padding: 2rem;
+            background: #ffffff;
+        }
+        
+        /* Mailport Product Demo */
+        .mailport-demo {
+            width: 100%;
+            max-width: 500px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .mailport-demo__header {
+            background: linear-gradient(135deg, #0066ff 0%, #1e3a8a 100%);
+            padding: 1.5rem;
+            color: white;
+        }
+        
+        .mailport-demo__header-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mailport-demo__header-subtitle {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+        
+        .mailport-demo__content {
+            padding: 1.5rem;
+        }
+        
+        .mailport-demo__email {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f9fafb;
+        }
+        
+        .mailport-demo__email-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+        
+        .mailport-demo__email-from {
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 0.875rem;
+        }
+        
+        .mailport-demo__badge {
+            background: #f59e0b;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .mailport-demo__scanning {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #eff6ff;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            border-left: 3px solid #0066ff;
+        }
+        
+        .mailport-demo__scanning-icon {
+            width: 20px;
+            height: 20px;
+            background: #0066ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.625rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+        
+        .mailport-demo__scanning-text {
+            font-size: 0.875rem;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        
+        .mailport-demo__email-subject {
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+        
+        .mailport-demo__features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .mailport-demo__feature {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: #f0f9ff;
+            border-radius: 6px;
+            border-left: 3px solid #0066ff;
+        }
+        
+        .mailport-demo__feature-icon {
+            width: 24px;
+            height: 24px;
+            background: #0066ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+        
+        .mailport-demo__feature-text {
+            font-size: 0.875rem;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 767px) {
+            .mailport-demo {
+                max-width: 100%;
+            }
         }
 
         .mailport-communication__text-wr {
@@ -201,11 +347,106 @@
                 min-height: 300px;
             }
         }
+        /* Simple Header Styles */
+        .simple-header {
+            background-color: #1a1a1a !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            padding: 0.25rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .simple-header .padding-global {
+            padding-top: 0.25rem !important;
+            padding-bottom: 0.25rem !important;
+        }
+        
+        .simple-header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .simple-header__logo-link {
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .simple-header__logo-image {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1) !important;
+        }
+        
+        .simple-header__nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .simple-header__nav .button {
+            background-color: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 6px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 400 !important;
+            text-decoration: none;
+        }
+        
+        .simple-header__nav .button:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: white !important;
+        }
+        
+        .simple-header__nav .button div {
+            color: inherit !important;
+        }
+        
+        @media (max-width: 767px) {
+            .simple-header__container {
+                padding: 0 1rem;
+            }
+            
+            .simple-header__nav {
+                gap: 0.5rem;
+            }
+            
+            .simple-header__nav .button {
+                padding: 0.5rem 1rem !important;
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
 
 <body class="body-reskin">
     <div class="page-wrapper u-overflow-clip-x">
+        <!-- Simple Header -->
+        <header class="simple-header">
+            <div class="padding-global">
+                <div class="simple-header__container">
+                    <div class="simple-header__logo">
+                        <a href="/" class="simple-header__logo-link">
+                            <img src="/images/derya logo top left.png" alt="Derya AI" class="simple-header__logo-image">
+                        </a>
+                    </div>
+                    <nav class="simple-header__nav">
+                        <a href="/" class="button w-inline-block">
+                            <div>Home</div>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        
         <main class="main-wrapper">
             <section class="mailport-hero">
                 <div class="mailport-hero-container">
@@ -220,8 +461,39 @@
                     <div class="mailport-communication__layout">
                         <div class="mailport-communication__image-wr">
                             <div class="mailport-communication__image-placeholder">
-                                <!-- Image placeholder - replace with your image -->
-                                <div>Image placeholder</div>
+                                <div class="mailport-demo">
+                                    <div class="mailport-demo__header">
+                                        <div class="mailport-demo__header-title">Mailport Extension</div>
+                                        <div class="mailport-demo__header-subtitle">Automated communication for freight forwarders</div>
+                                    </div>
+                                    <div class="mailport-demo__content">
+                                        <div class="mailport-demo__scanning">
+                                            <div class="mailport-demo__scanning-icon">🔍</div>
+                                            <div class="mailport-demo__scanning-text">Scanning inbox for tasks...</div>
+                                        </div>
+                                        <div class="mailport-demo__email">
+                                            <div class="mailport-demo__email-header">
+                                                <div class="mailport-demo__email-from">Exporter Inquiry</div>
+                                                <div class="mailport-demo__badge">Action needed</div>
+                                            </div>
+                                            <div class="mailport-demo__email-subject">Shipment #12345 - Missing documents</div>
+                                        </div>
+                                        <div class="mailport-demo__features">
+                                            <div class="mailport-demo__feature">
+                                                <div class="mailport-demo__feature-icon">📋</div>
+                                                <div class="mailport-demo__feature-text">Found: Documents need to be sent</div>
+                                            </div>
+                                            <div class="mailport-demo__feature">
+                                                <div class="mailport-demo__feature-icon">⏱</div>
+                                                <div class="mailport-demo__feature-text">Found: ETA update required</div>
+                                            </div>
+                                            <div class="mailport-demo__feature">
+                                                <div class="mailport-demo__feature-icon">🔔</div>
+                                                <div class="mailport-demo__feature-text">Found: Notification not sent</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="mailport-communication__text-wr">

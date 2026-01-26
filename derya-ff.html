@@ -89,14 +89,16 @@
 
         /* Section 1: Hero/Intro */
         .ff-hero {
-            min-height: 80vh;
+            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a2e 100%);
             position: relative;
             overflow: hidden;
-            padding: 6rem 0;
+            padding: 0;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .ff-hero::before {
@@ -148,11 +150,39 @@
             margin-top: 1.5rem;
         }
 
+        .ff-hero__cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+            margin-top: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .ff-hero__cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0, 102, 255, 0.4);
+            background: linear-gradient(135deg, #0052cc 0%, #003d99 100%);
+        }
+
         /* Section 2: Workflow with Rotation */
         .ff-workflow {
-            padding: 6rem 0;
+            min-height: 100vh;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
             background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
             position: relative;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .ff-workflow .padding-global {
@@ -516,13 +546,120 @@
 
         /* Section 3: Dashboard Frame */
         .ff-dashboard {
-            padding: 6rem 0;
+            min-height: 100vh;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
             background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        /* Section 4: Demo Request */
+        .ff-demo {
+            min-height: 100vh;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #1a1a2e 100%);
+            position: relative;
+            overflow: hidden;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .ff-demo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 102, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(30, 58, 138, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .ff-demo__container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            margin: 0 auto;
+        }
+
+        .ff-demo__heading {
+            color: white;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .ff-demo__description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .ff-demo__button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem 3rem;
+            background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .ff-demo__button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0, 102, 255, 0.4);
+            background: linear-gradient(135deg, #0052cc 0%, #003d99 100%);
+        }
+
+        /* Fade animations for sections */
+        .ff-hero.fade-out,
+        .ff-workflow.fade-out,
+        .ff-dashboard.fade-out,
+        .ff-demo.fade-out {
+            opacity: 0;
+            transform: scale(0.9) translateY(50px);
+            pointer-events: none;
+        }
+
+        .ff-hero.fade-in,
+        .ff-workflow.fade-in,
+        .ff-dashboard.fade-in,
+        .ff-demo.fade-in {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Default state - sections start faded out except first */
+        .ff-workflow,
+        .ff-dashboard,
+        .ff-demo {
+            opacity: 0;
+            transform: scale(0.9) translateY(50px);
         }
 
         .ff-dashboard .padding-global {
-            padding-left: 2.5%;
-            padding-right: 2.5%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            width: 100%;
+            max-width: none;
         }
 
         .ff-dashboard__heading {
@@ -547,6 +684,7 @@
 
         .ff-dashboard__frame {
             max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
             background: #ffffff;
             border-radius: 16px;
@@ -570,6 +708,10 @@
             border-radius: 16px;
             pointer-events: none;
             z-index: 1;
+        }
+
+        .ff-dashboard__iframe-container {
+            z-index: 2;
         }
 
         .ff-dashboard__header {
@@ -621,17 +763,17 @@
             min-height: 0;
             width: 100%;
             height: 100%;
+            background: #f8fafc;
         }
 
         .ff-dashboard__iframe-wrapper {
-            width: 117.65%;  /* 100% / 0.85 = 117.65% */
-            height: 117.65%;
-            transform: translate(-50%, -50%) scale(0.85);
-            transform-origin: center center;
-            overflow: hidden;
+            width: 100%;
+            height: 100%;
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: auto;
         }
 
         .ff-dashboard__iframe {
@@ -639,26 +781,19 @@
             height: 100%;
             border: none;
             display: block;
-            overflow: hidden;
+            pointer-events: auto;
         }
 
         /* Hide scrollbars in all browsers */
-        .ff-dashboard__iframe::-webkit-scrollbar {
+        .ff-dashboard__iframe::-webkit-scrollbar,
+        .ff-dashboard__iframe-wrapper::-webkit-scrollbar {
             display: none;
         }
 
-        .ff-dashboard__iframe {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
+        .ff-dashboard__iframe,
         .ff-dashboard__iframe-wrapper {
             scrollbar-width: none;
             -ms-overflow-style: none;
-        }
-
-        .ff-dashboard__iframe-wrapper::-webkit-scrollbar {
-            display: none;
         }
 
         /* Responsive */
@@ -687,10 +822,12 @@
             }
 
             .ff-dashboard__iframe-wrapper {
-                width: 138.89%;  /* 100% / 0.72 */
-                height: 138.89%;
-                transform: translate(-50%, -50%) scale(0.72);
-                transform-origin: center center;
+                width: 100%;
+                height: 100%;
+            }
+
+            .ff-dashboard__iframe {
+                transform: scale(1);
             }
         }
 
@@ -729,10 +866,12 @@
             }
 
             .ff-dashboard__iframe-wrapper {
-                width: 166.67%;  /* 100% / 0.6 */
-                height: 166.67%;
-                transform: translate(-50%, -50%) scale(0.6);
-                transform-origin: center center;
+                width: 100%;
+                height: 100%;
+            }
+
+            .ff-dashboard__iframe {
+                transform: scale(1);
             }
         }
 
@@ -755,6 +894,102 @@
         .ff-workflow__column-content {
             position: relative;
             min-height: 500px;
+        }
+
+        /* Ensure content is centered within full-height sections */
+        .ff-workflow .padding-global {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .ff-dashboard .padding-global {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Section Progress Indicator */
+        .ff-progress-indicator {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .ff-progress-bar {
+            width: 3px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .ff-progress-bar.active {
+            background: linear-gradient(180deg, #0066ff 0%, #0052cc 100%);
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.5), 0 0 40px rgba(0, 102, 255, 0.3);
+            height: 80px;
+        }
+
+        .ff-progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .ff-progress-bar.active::after {
+            background: #0066ff;
+            box-shadow: 0 0 12px rgba(0, 102, 255, 0.8);
+            width: 10px;
+            height: 10px;
+        }
+
+        @media (max-width: 991px) {
+            .ff-progress-indicator {
+                left: 1rem;
+            }
+
+            .ff-progress-bar {
+                width: 2px;
+                height: 50px;
+            }
+
+            .ff-progress-bar.active {
+                height: 65px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .ff-progress-indicator {
+                left: 0.75rem;
+            }
+
+            .ff-progress-bar {
+                width: 2px;
+                height: 40px;
+            }
+
+            .ff-progress-bar.active {
+                height: 55px;
+            }
         }
     </style>
 </head>
@@ -792,14 +1027,23 @@
         </header>
         
         <main class="main-wrapper">
+            <!-- Progress Indicator -->
+            <div class="ff-progress-indicator" id="ffProgressIndicator">
+                <div class="ff-progress-bar" data-section="0"></div>
+                <div class="ff-progress-bar" data-section="1"></div>
+                <div class="ff-progress-bar" data-section="2"></div>
+                <div class="ff-progress-bar" data-section="3"></div>
+            </div>
+
             <!-- Section 1: Hero/Intro -->
             <section class="ff-hero">
                 <div class="ff-hero-container">
-                    <p class="ff-stat">70% of inbound forwarding is lost on speed.</p>
+                    <p class="ff-stat">75% of inbound forwarding contracts are lost on speed.</p>
                     <h1 class="ts-h1">Be the first to quote.</h1>
                     <p class="ff-description">
                         Derya adaptive intelligence prices from both major carriers and niche lines.
                     </p>
+                    <a href="https://calendar.app.google/i8QCrcQwMjBmhQv86" target="_blank" class="ff-hero__cta-button">Request a Demo</a>
                 </div>
             </section>
 
@@ -1382,7 +1626,8 @@
                                     class="ff-dashboard__iframe"
                                     frameborder="0"
                                     allowfullscreen
-                                    scrolling="no"
+                                    allow="clipboard-read; clipboard-write; fullscreen"
+                                    sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation"
                                     title="Derya FF Dashboard Demo">
                                 </iframe>
                             </div>
@@ -1390,10 +1635,105 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Section 4: Demo Request -->
+            <section class="ff-demo">
+                <div class="ff-demo__container">
+                    <h2 class="ff-demo__heading">See Derya FF in Action</h2>
+                    <p class="ff-demo__description">
+                        Schedule a personalized demo to discover how our adaptive intelligence can transform your freight rate procurement process.
+                    </p>
+                    <a href="https://calendar.app.google/i8QCrcQwMjBmhQv86" target="_blank" class="ff-demo__button">Request a Demo</a>
+                </div>
+            </section>
         </main>
     </div>
 
     <script>
+        // Scroll-based section reveal
+        const ffSections = [
+            document.querySelector('.ff-hero'),
+            document.querySelector('.ff-workflow'),
+            document.querySelector('.ff-dashboard'),
+            document.querySelector('.ff-demo')
+        ];
+
+        function handleFFScroll() {
+            const scrollY = window.scrollY;
+            const viewportHeight = window.innerHeight;
+            const viewportCenter = scrollY + viewportHeight / 2;
+            
+            let activeIndex = 0;
+            let minDistance = Infinity;
+            
+            // Find which section's center is closest to viewport center
+            ffSections.forEach((section, index) => {
+                if (!section) return;
+                
+                const rect = section.getBoundingClientRect();
+                const sectionTop = rect.top + scrollY;
+                const sectionHeight = rect.height;
+                const sectionCenter = sectionTop + sectionHeight / 2;
+                
+                // Distance from viewport center to section center
+                const distance = Math.abs(viewportCenter - sectionCenter);
+                
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    activeIndex = index;
+                }
+            });
+            
+            // Apply fade-in to active section, fade-out to all others
+            ffSections.forEach((section, index) => {
+                if (!section) return;
+                
+                section.classList.remove('fade-in', 'fade-out');
+                
+                if (index === activeIndex) {
+                    section.classList.add('fade-in');
+                } else {
+                    section.classList.add('fade-out');
+                }
+            });
+
+            // Update progress indicator
+            const progressBars = document.querySelectorAll('.ff-progress-bar');
+            progressBars.forEach((bar, index) => {
+                if (index === activeIndex) {
+                    bar.classList.add('active');
+                } else {
+                    bar.classList.remove('active');
+                }
+            });
+        }
+
+        // Set initial state
+        window.addEventListener('load', () => {
+            handleFFScroll();
+        });
+        
+        // Also handle on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                handleFFScroll();
+            });
+        } else {
+            handleFFScroll();
+        }
+
+        // Throttle scroll events for performance
+        let ffTicking = false;
+        window.addEventListener('scroll', () => {
+            if (!ffTicking) {
+                window.requestAnimationFrame(() => {
+                    handleFFScroll();
+                    ffTicking = false;
+                });
+                ffTicking = true;
+            }
+        });
+
         // Rotation functionality for workflow examples
         document.addEventListener('DOMContentLoaded', function() {
             const controlButtons = document.querySelectorAll('.ff-workflow__control-btn');

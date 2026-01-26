@@ -94,8 +94,13 @@
 
         /* Section 1: Founders */
         .company-cofounders {
-            padding: 8rem 0;
+            padding: 3rem 0;
             background: transparent;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .company-cofounders .padding-global {
@@ -106,7 +111,7 @@
         .company-cofounders__container {
             max-width: 1400px;
             margin: 0 auto;
-            background: #0a0a0a;
+            background: #0f172a;
             border-radius: 24px;
             padding: 5rem 4rem;
         }
@@ -258,7 +263,7 @@
         }
 
         .company-cofounder__logo {
-            height: 50px;
+            height: 60px;
             width: auto;
             opacity: 0.8;
             transition: opacity 0.3s ease;
@@ -272,13 +277,25 @@
         }
 
         .company-cofounder__logo img {
-            height: 100%;
+            height: 60px;
             width: auto;
-            max-width: 120px;
+            max-width: 150px;
             object-fit: contain;
             display: block;
             filter: brightness(0) invert(1);
             background: transparent;
+        }
+
+        .company-cofounder__logo img[alt="UCLA"] {
+            height: 50px;
+            max-width: 120px;
+        }
+
+        .company-cofounder__logo img[alt="University of Oxford"],
+        .company-cofounder__logo img[alt="CMA CGM"],
+        .company-cofounder__logo img[alt="CEVA Logistics"] {
+            height: 70px;
+            max-width: 170px;
         }
 
         .company-cofounder__logo img[src=""],
@@ -294,8 +311,13 @@
 
         /* Section 2: About */
         .company-about {
-            padding: 6rem 0;
-            background: #ffffff;
+            padding: 3rem 0;
+            background: transparent;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
         .company-about .padding-global {
@@ -307,26 +329,57 @@
             max-width: 900px;
             margin: 0 auto;
             text-align: center;
+            background: #0f172a;
+            border-radius: 24px;
+            padding: 5rem 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .company-about__title {
             font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 700;
             line-height: 1.2;
-            color: #1a1a1a;
+            color: #ffffff;
             margin-bottom: 2rem;
         }
 
         .company-about__paragraph {
             font-size: clamp(1.125rem, 2vw, 1.25rem);
-            color: #4b5563;
+            color: rgba(255, 255, 255, 0.8);
             line-height: 1.8;
         }
 
         /* Section 3: Contact Boxes */
         .company-contact {
-            padding: 6rem 0;
-            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            padding: 3rem 0;
+            background: transparent;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .company-cofounders.fade-out,
+        .company-about.fade-out,
+        .company-contact.fade-out {
+            opacity: 0;
+            transform: scale(0.9) translateY(50px);
+            pointer-events: none;
+        }
+
+        .company-cofounders.fade-in,
+        .company-about.fade-in,
+        .company-contact.fade-in {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        /* Center the content within each section */
+        .company-cofounders .padding-global,
+        .company-about .padding-global,
+        .company-contact .padding-global {
+            width: 100%;
         }
 
         .company-contact .padding-global {
@@ -334,20 +387,27 @@
             padding-right: 2.5%;
         }
 
+        .company-contact__container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #0f172a;
+            border-radius: 24px;
+            padding: 5rem 4rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
         .company-contact__grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .company-contact__box {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             padding: 3rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             display: flex;
             flex-direction: column;
@@ -355,8 +415,9 @@
 
         .company-contact__box:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            border-color: #0066ff;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
         }
 
         .company-contact__box-icon {
@@ -374,21 +435,29 @@
         .company-contact__box-title {
             font-size: 1.5rem;
             font-weight: 600;
-            color: #1a1a1a;
+            color: #ffffff;
             margin-bottom: 1rem;
         }
 
         .company-contact__box-description {
             font-size: 1rem;
-            color: #6b7280;
+            color: rgba(255, 255, 255, 0.7);
             line-height: 1.6;
             margin-bottom: 2rem;
             flex: 1;
         }
 
-        .company-contact__box-button {
+        .company-contact__box-button-wrapper {
+            position: relative;
             display: inline-block;
-            padding: 0.875rem 2rem;
+            width: 100%;
+        }
+
+        .company-contact__box-button {
+            display: inline-flex;
+            align-items: stretch;
+            gap: 0;
+            padding: 0;
             background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
             color: white;
             text-decoration: none;
@@ -396,12 +465,139 @@
             font-weight: 600;
             font-size: 1rem;
             transition: all 0.3s ease;
-            text-align: center;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            isolation: isolate;
+        }
+
+        /* Simple button (Contact Us) - match Request Demo button height */
+        .company-contact__box-button:not(#requestDemoButton) {
+            padding: 0.875rem 2rem;
+            justify-content: center;
         }
 
         .company-contact__box-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+        }
+
+        .company-contact__box-button-main {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            flex: 1;
+            min-width: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-contact__box-button-separator {
+            width: 1px;
+            height: 24px;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .company-contact__box-button-product {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.75rem;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .company-contact__box-button-arrow-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.875rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: background 0.3s ease;
+            flex-shrink: 0;
+            align-self: stretch;
+            border-radius: 0 8px 8px 0;
+            position: relative;
+            z-index: 1;
+            margin: 0;
+        }
+
+        .company-contact__box-button-arrow-section:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .company-contact__box-button-arrow {
+            font-size: 0.875rem;
+            transition: transform 0.3s ease;
+        }
+
+        .company-contact__box-button-wrapper.open .company-contact__box-button-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Simple button style for Contact Us */
+        .company-contact__box-button:not(.company-contact__box-button-wrapper *) {
+            padding: 0.875rem 2rem;
+            justify-content: center;
+        }
+
+        .company-contact__box-dropdown {
+            position: relative;
+        }
+
+        .company-contact__box-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            margin-top: 0.5rem;
+            background: #1e293b;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            min-width: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 100;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .company-contact__box-dropdown-menu.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .company-contact__box-dropdown-item {
+            padding: 0.75rem 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .company-contact__box-dropdown-item:first-child {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .company-contact__box-dropdown-item:last-child {
+            border-bottom: none;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        .company-contact__box-dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
 
         /* Responsive */
@@ -452,11 +648,19 @@
             }
 
             .company-about {
-                padding: 4rem 0;
+                padding: 3rem 0 4rem 0;
+            }
+
+            .company-about__content {
+                padding: 3rem 2rem;
             }
 
             .company-contact {
-                padding: 4rem 0;
+                padding: 3rem 0 4rem 0;
+            }
+
+            .company-contact__container {
+                padding: 3rem 2rem;
             }
 
             .company-contact__box {
@@ -489,7 +693,7 @@
                             <div>AI Employee</div>
                         </a>
                         <a href="/mailport.html" class="button w-inline-block">
-                            <div>Mailport</div>
+                            <div>D-Mail</div>
                         </a>
                         <a href="/company.html" class="button w-inline-block">
                             <div>Company</div>
@@ -542,13 +746,13 @@
                             </div>
                             <div class="company-cofounder__logos">
                                 <div class="company-cofounder__logo">
-                                    <img src="/images/logos/ycombinator.png" alt="Y Combinator">
+                                    <img src="Derya Founders/YC.png" alt="Y Combinator">
                                 </div>
                                 <div class="company-cofounder__logo">
-                                    <img src="/images/logos/google.png" alt="Google">
+                                    <img src="/Derya Founders/BOFA logo.png" alt="Bank of America">
                                 </div>
                                 <div class="company-cofounder__logo">
-                                    <img src="/images/logos/ucla.png" alt="UCLA">
+                                    <img src="/Derya Founders/UCLA LOGO.png" alt="UCLA">
                                 </div>
                             </div>
                         </div>
@@ -583,10 +787,13 @@
                             </div>
                             <div class="company-cofounder__logos">
                                 <div class="company-cofounder__logo">
-                                    <img src="/images/logos/oxford.png" alt="University of Oxford">
+                                    <img src="Derya Founders/OXFORD LOGO.png" alt="University of Oxford">
                                 </div>
                                 <div class="company-cofounder__logo">
-                                    <img src="/images/logos/ceva.png" alt="CEVA Logistics">
+                                    <img src="/Derya Founders/CMA CGM Logo.png" alt="CMA CGM">
+                                </div>
+                                <div class="company-cofounder__logo">
+                                    <img src="/Derya Founders/Ceva Logistics.png" alt="CEVA Logistics">
                                 </div>
                             </div>
                         </div>
@@ -598,9 +805,9 @@
             <section class="company-about">
                 <div class="padding-global">
                     <div class="company-about__content">
-                        <h2 class="company-about__title">Title will go here</h2>
+                        <h2 class="company-about__title">We're on a mission to automate logistics office work from A to Z.</h2>
                         <p class="company-about__paragraph">
-                            Paragraph content will go here. You can fill this in with your company information, mission, vision, or any other relevant details about Derya AI.
+                            We collaborate with freight forwarders, customs brokers, and carriers to understand day-to-day logistics challenges. Then we build scalable, connected AI tools that streamline operations, moving toward the first truly AI-native freight forwarder.
                         </p>
                     </div>
                 </div>
@@ -609,28 +816,172 @@
             <!-- Section 3: Contact Boxes -->
             <section class="company-contact">
                 <div class="padding-global">
-                    <div class="company-contact__grid">
+                    <div class="company-contact__container">
+                        <div class="company-contact__grid">
                         <div class="company-contact__box">
-                            <div class="company-contact__box-icon">💼</div>
                             <h3 class="company-contact__box-title">Investor Relations</h3>
                             <p class="company-contact__box-description">
-                                Interested in learning more about our company, financials, or investment opportunities?
+                                Interested in learning more about our company, financials, current investors, or investment opportunities?
                             </p>
-                            <a href="mailto:investors@usederya.com" class="company-contact__box-button">Contact Investors</a>
+                            <a href="mailto:info@usederya.com" class="company-contact__box-button">Contact Us</a>
                         </div>
                         <div class="company-contact__box">
-                            <div class="company-contact__box-icon">🎯</div>
                             <h3 class="company-contact__box-title">Demo Request</h3>
                             <p class="company-contact__box-description">
                                 See Derya AI in action. Request a personalized demo to discover how our solutions can transform your freight forwarding operations.
                             </p>
-                            <a href="mailto:demos@usederya.com" class="company-contact__box-button">Request Demo</a>
+                            <div class="company-contact__box-button-wrapper" id="demoButtonWrapper">
+                                <a href="https://calendar.app.google/i8QCrcQwMjBmhQv86" target="_blank" class="company-contact__box-button" id="requestDemoButton">
+                                    <div class="company-contact__box-button-main">
+                                        <span>Request Demo</span>
+                                        <span class="company-contact__box-button-separator"></span>
+                                        <span class="company-contact__box-button-product" id="selectedProduct" onclick="toggleDropdown(event); return false;">Derya FF</span>
+                                    </div>
+                                    <div class="company-contact__box-button-arrow-section" onclick="toggleDropdown(event); return false;">
+                                        <span class="company-contact__box-button-arrow">▼</span>
+                                    </div>
+                                </a>
+                                <div class="company-contact__box-dropdown-menu" id="demoDropdown">
+                                    <div class="company-contact__box-dropdown-item" onclick="selectProduct('Derya FF')">Derya FF</div>
+                                    <div class="company-contact__box-dropdown-item" onclick="selectProduct('AI Employee')">AI Employee</div>
+                                    <div class="company-contact__box-dropdown-item" onclick="selectProduct('D-Mail')">D-Mail</div>
+                                </div>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
     </div>
+
+    <script>
+        // Scroll-based card reveal animation
+        const sections = [
+            document.querySelector('.company-cofounders'),
+            document.querySelector('.company-about'),
+            document.querySelector('.company-contact')
+        ];
+
+        function handleScroll() {
+            const scrollY = window.scrollY;
+            const viewportHeight = window.innerHeight;
+            const viewportCenter = scrollY + viewportHeight / 2;
+            
+            let activeIndex = 0;
+            let minDistance = Infinity;
+            
+            // Find which section's center is closest to viewport center
+            sections.forEach((section, index) => {
+                if (!section) return;
+                
+                const rect = section.getBoundingClientRect();
+                const sectionTop = rect.top + scrollY;
+                const sectionHeight = rect.height;
+                const sectionCenter = sectionTop + sectionHeight / 2;
+                
+                // Distance from viewport center to section center
+                const distance = Math.abs(viewportCenter - sectionCenter);
+                
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    activeIndex = index;
+                }
+            });
+            
+            // Apply fade-in to active section, fade-out to all others
+            sections.forEach((section, index) => {
+                if (!section) return;
+                
+                section.classList.remove('fade-in', 'fade-out');
+                
+                if (index === activeIndex) {
+                    section.classList.add('fade-in');
+                } else {
+                    section.classList.add('fade-out');
+                }
+            });
+        }
+
+        // Set initial state
+        window.addEventListener('load', () => {
+            handleScroll();
+        });
+        
+        // Also handle on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                handleScroll();
+            });
+        } else {
+            handleScroll();
+        }
+
+        // Throttle scroll events for performance
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    handleScroll();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // Dropdown functionality
+        let selectedProduct = 'Derya FF';
+
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            const wrapper = document.getElementById('demoButtonWrapper');
+            const dropdown = document.getElementById('demoDropdown');
+            wrapper.classList.toggle('open');
+            dropdown.classList.toggle('open');
+        }
+
+        function selectProduct(product) {
+            selectedProduct = product;
+            const productDisplay = document.getElementById('selectedProduct');
+            if (productDisplay) {
+                productDisplay.textContent = product;
+            }
+            
+            // Close dropdown
+            const wrapper = document.getElementById('demoButtonWrapper');
+            const dropdown = document.getElementById('demoDropdown');
+            if (wrapper) wrapper.classList.remove('open');
+            if (dropdown) dropdown.classList.remove('open');
+        }
+
+        // Handle button click - prevent default if clicking dropdown parts
+        document.addEventListener('DOMContentLoaded', () => {
+            const button = document.getElementById('requestDemoButton');
+            if (button) {
+                button.addEventListener('click', function(e) {
+                    // If clicking on dropdown parts, prevent navigation
+                    if (e.target.closest('.company-contact__box-dropdown-menu') || 
+                        e.target.classList.contains('company-contact__box-button-product') ||
+                        e.target.closest('.company-contact__box-button-arrow-section')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }
+                    // Otherwise, let the link navigate to calendar
+                });
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            const wrapper = document.getElementById('demoButtonWrapper');
+            const dropdown = document.getElementById('demoDropdown');
+            if (wrapper && !wrapper.contains(event.target)) {
+                wrapper.classList.remove('open');
+                if (dropdown) dropdown.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 
 </html>

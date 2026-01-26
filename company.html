@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Company - Derya AI</title>
+    <link
+        href="https://cdn.prod.website-files.com/624b192df0b0151225c10026/css/merge-landing-page.shared.e48b540b0.min.css"
+        rel="stylesheet" type="text/css">
+    <!-- Custom CSS Files -->
+    <link href="/styles/utilities.css" rel="stylesheet" type="text/css">
+    <link href="/styles/components.css?v=3" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        WebFont.load({ google: { families: ["Inconsolata:400,700", "Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic", "Inter:100,200,300,regular,500,600,700,800,900"] } });
+    </script>
+    <script type="text/javascript">
+        !function (o, c) { var n = c.documentElement, t = " w-mod-"; n.className += t + "js", ("ontouchstart" in o || o.DocumentTouch && c instanceof DocumentTouch) && (n.className += t + "touch") }(window, document);
+    </script>
+    <link
+        href="/Derya Square.jpeg"
+        rel="shortcut icon" type="image/x-icon">
+    <style>
+        /* Simple Header Styles */
+        .simple-header {
+            background-color: #1a1a1a !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+            padding: 0.25rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .simple-header .padding-global {
+            padding-top: 0.25rem !important;
+            padding-bottom: 0.25rem !important;
+        }
+        
+        .simple-header__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .simple-header__logo-link {
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .simple-header__logo-image {
+            height: 40px;
+            width: auto;
+            filter: brightness(0) invert(1) !important;
+        }
+        
+        .simple-header__nav {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .simple-header__nav .button {
+            background-color: transparent !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.9) !important;
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 6px !important;
+            transition: all 0.3s ease !important;
+            font-weight: 400 !important;
+            text-decoration: none;
+        }
+        
+        .simple-header__nav .button:hover {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            color: white !important;
+        }
+        
+        .simple-header__nav .button div {
+            color: inherit !important;
+        }
+
+        /* Company Page Styles */
+        .company-page {
+            background: #ffffff;
+        }
+
+        /* Section 1: Founders */
+        .company-cofounders {
+            padding: 8rem 0;
+            background: transparent;
+        }
+
+        .company-cofounders .padding-global {
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+        }
+
+        .company-cofounders__container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #0a0a0a;
+            border-radius: 24px;
+            padding: 5rem 4rem;
+        }
+
+        .company-cofounders__heading {
+            text-align: left;
+            margin-bottom: 4rem;
+        }
+
+        .company-cofounders__heading h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #ffffff;
+            margin-bottom: 0;
+            letter-spacing: -0.02em;
+        }
+
+        .company-cofounders__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .company-cofounder {
+            text-align: left;
+        }
+
+        .company-cofounder__image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 0 2rem 0;
+            background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .company-cofounder__name-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .company-cofounder__name {
+            margin-bottom: 0;
+        }
+
+        .company-cofounder__social {
+            display: flex;
+            flex-direction: row;
+            gap: 0.75rem;
+        }
+
+        .company-cofounder__social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .company-cofounder__social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .company-cofounder__social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .company-cofounder__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .company-cofounder__image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 3rem;
+        }
+
+        .company-cofounder__name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+
+        .company-cofounder__name-wrapper .company-cofounder__name {
+            margin-bottom: 0;
+        }
+
+        .company-cofounder__title {
+            font-size: 1rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        .company-cofounder__bio {
+            font-size: 0.9375rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .company-cofounder__bio ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .company-cofounder__bio li {
+            margin-bottom: 0.5rem;
+            padding-left: 0;
+        }
+
+        .company-cofounder__bio li::before {
+            content: "• ";
+            margin-right: 0.5rem;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .company-cofounder__logos {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .company-cofounder__logo {
+            height: 50px;
+            width: auto;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .company-cofounder__logo:hover {
+            opacity: 1;
+        }
+
+        .company-cofounder__logo img {
+            height: 100%;
+            width: auto;
+            max-width: 120px;
+            object-fit: contain;
+            display: block;
+            filter: brightness(0) invert(1);
+            background: transparent;
+        }
+
+        .company-cofounder__logo img[src=""],
+        .company-cofounder__logo img:not([src]),
+        .company-cofounder__logo img[src*="error"] {
+            display: none;
+        }
+
+        .company-cofounder__logo img[src=""],
+        .company-cofounder__logo img:not([src]) {
+            display: none;
+        }
+
+        /* Section 2: About */
+        .company-about {
+            padding: 6rem 0;
+            background: #ffffff;
+        }
+
+        .company-about .padding-global {
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+        }
+
+        .company-about__content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .company-about__title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+        }
+
+        .company-about__paragraph {
+            font-size: clamp(1.125rem, 2vw, 1.25rem);
+            color: #4b5563;
+            line-height: 1.8;
+        }
+
+        /* Section 3: Contact Boxes */
+        .company-contact {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        }
+
+        .company-contact .padding-global {
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+        }
+
+        .company-contact__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .company-contact__box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .company-contact__box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-color: #0066ff;
+        }
+
+        .company-contact__box-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .company-contact__box-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+        }
+
+        .company-contact__box-description {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            flex: 1;
+        }
+
+        .company-contact__box-button {
+            display: inline-block;
+            padding: 0.875rem 2rem;
+            background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .company-contact__box-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .company-cofounders {
+                padding: 6rem 0;
+            }
+
+            .company-cofounders__grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .company-cofounders__container {
+                padding: 3rem 2rem;
+            }
+
+            .company-cofounders__heading {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+
+            .company-cofounder {
+                text-align: center;
+            }
+
+            .company-cofounder__image {
+                margin: 0 auto 2rem;
+            }
+
+            .company-cofounder__name-wrapper {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .company-contact__grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .company-cofounders {
+                padding: 4rem 0;
+            }
+
+            .company-cofounders__heading {
+                margin-bottom: 3rem;
+            }
+
+            .company-about {
+                padding: 4rem 0;
+            }
+
+            .company-contact {
+                padding: 4rem 0;
+            }
+
+            .company-contact__box {
+                padding: 2rem;
+            }
+
+            .company-cofounder__image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <header class="simple-header">
+            <div class="padding-global">
+                <div class="simple-header__container">
+                    <div class="simple-header__logo">
+                        <a href="/derya-ff.html" class="simple-header__logo-link">
+                            <img src="/images/derya logo top left.png" alt="Derya AI" class="simple-header__logo-image">
+                        </a>
+                    </div>
+                    <nav class="simple-header__nav">
+                        <a href="/derya-ff.html" class="button w-inline-block">
+                            <div>Derya FF</div>
+                        </a>
+                        <a href="/" class="button w-inline-block">
+                            <div>AI Employee</div>
+                        </a>
+                        <a href="/mailport.html" class="button w-inline-block">
+                            <div>Mailport</div>
+                        </a>
+                        <a href="/company.html" class="button w-inline-block">
+                            <div>Company</div>
+                        </a>
+                        <a href="https://deryamaritime.substack.com/" target="_blank" rel="noopener noreferrer" class="button w-inline-block">
+                            <div>Blog</div>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main class="company-page">
+            <!-- Section 1: Founders -->
+            <section class="company-cofounders">
+                <div class="padding-global">
+                    <div class="company-cofounders__container">
+                        <div class="company-cofounders__heading">
+                            <h1>Derya Maritime Inc.</h1>
+                        </div>
+                        <div class="company-cofounders__grid">
+                        <div class="company-cofounder">
+                            <div class="company-cofounder__image">
+                                <img src="/Mert Turna.jpeg" alt="Mert Turna">
+                            </div>
+                            <div class="company-cofounder__name-wrapper">
+                                <div class="company-cofounder__name">Mert Turna</div>
+                                <div class="company-cofounder__social">
+                                    <a href="mailto:mert@usederya.com" class="company-cofounder__social-link" aria-label="Email Mert Turna">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/mert-turna/" target="_blank" rel="noopener noreferrer" class="company-cofounder__social-link" aria-label="LinkedIn Mert Turna">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="company-cofounder__bio">
+                                <ul>
+                                    <li>UCLA, CS</li>
+                                    <li>Ship Operations Software, Venture Capital, Investment Banking</li>
+                                    <li>Founding Experience: Logistics Al software (Hemut (CTO), YC W25)</li>
+                                </ul>
+                            </div>
+                            <div class="company-cofounder__logos">
+                                <div class="company-cofounder__logo">
+                                    <img src="/images/logos/ycombinator.png" alt="Y Combinator">
+                                </div>
+                                <div class="company-cofounder__logo">
+                                    <img src="/images/logos/google.png" alt="Google">
+                                </div>
+                                <div class="company-cofounder__logo">
+                                    <img src="/images/logos/ucla.png" alt="UCLA">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="company-cofounder">
+                            <div class="company-cofounder__image">
+                                <img src="/Oguzhan k.jpeg" alt="Oguzhan Karaca">
+                            </div>
+                            <div class="company-cofounder__name-wrapper">
+                                <div class="company-cofounder__name">Oguzhan Karaca</div>
+                                <div class="company-cofounder__social">
+                                    <a href="mailto:oguzhan@usederya.com" class="company-cofounder__social-link" aria-label="Email Oguzhan Karaca">
+                                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M22 6L12 13L2 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/oguzhan-karaca/" target="_blank" rel="noopener noreferrer" class="company-cofounder__social-link" aria-label="LinkedIn Oguzhan Karaca">
+                                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M6 9H2V21H6V9Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="company-cofounder__bio">
+                                <ul>
+                                    <li>Oxford, Law</li>
+                                    <li>Logistics/GDPR/data Regulatory, Corporate Law</li>
+                                    <li>Founding Experience: 6 figure ARR (CEO) B2B/B2C education consultancy</li>
+                                </ul>
+                            </div>
+                            <div class="company-cofounder__logos">
+                                <div class="company-cofounder__logo">
+                                    <img src="/images/logos/oxford.png" alt="University of Oxford">
+                                </div>
+                                <div class="company-cofounder__logo">
+                                    <img src="/images/logos/ceva.png" alt="CEVA Logistics">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: About -->
+            <section class="company-about">
+                <div class="padding-global">
+                    <div class="company-about__content">
+                        <h2 class="company-about__title">Title will go here</h2>
+                        <p class="company-about__paragraph">
+                            Paragraph content will go here. You can fill this in with your company information, mission, vision, or any other relevant details about Derya AI.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: Contact Boxes -->
+            <section class="company-contact">
+                <div class="padding-global">
+                    <div class="company-contact__grid">
+                        <div class="company-contact__box">
+                            <div class="company-contact__box-icon">💼</div>
+                            <h3 class="company-contact__box-title">Investor Relations</h3>
+                            <p class="company-contact__box-description">
+                                Interested in learning more about our company, financials, or investment opportunities?
+                            </p>
+                            <a href="mailto:investors@usederya.com" class="company-contact__box-button">Contact Investors</a>
+                        </div>
+                        <div class="company-contact__box">
+                            <div class="company-contact__box-icon">🎯</div>
+                            <h3 class="company-contact__box-title">Demo Request</h3>
+                            <p class="company-contact__box-description">
+                                See Derya AI in action. Request a personalized demo to discover how our solutions can transform your freight forwarding operations.
+                            </p>
+                            <a href="mailto:demos@usederya.com" class="company-contact__box-button">Request Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
+

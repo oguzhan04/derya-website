@@ -94,50 +94,7 @@
                 d.getElementsByTagName('head')[0].appendChild(i);
             }("1008470", document.location.href, document));
     </script>
-    <!-- Spline background styles + viewer script -->
     <style>
-        .spline-hero { 
-            position: relative; 
-            overflow: visible;
-            min-height: 100vh;
-            width: 100vw;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            left: 0;
-            right: 0;
-            z-index: 1;
-        }
-        .home__hero {
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-        .home__hero .padding-global {
-            padding: 0 !important;
-            margin: 0 !important;
-            width: 100%;
-            max-width: 100%;
-        }
-        .main-wrapper {
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-        section.home__hero {
-            margin: 0 !important;
-            padding: 0 !important;
-            position: relative;
-            z-index: 1;
-            margin-bottom: 0 !important;
-        }
-        section.home__hero + * {
-            margin-top: 0 !important;
-            padding-top: 0 !important;
-        }
-        .hero-gradient-transition {
-            display: none !important;
-        }
         /* Darker header with white logo */
         .simple-header {
             background-color: #1a1a1a !important;
@@ -171,70 +128,6 @@
         .simple-header__nav .button div {
             color: inherit !important;
         }
-        .spline-hero .spline-bg { 
-            position: absolute; 
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0; 
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .spline-hero spline-viewer { 
-            width: 100vw; 
-            height: 100vh; 
-            display: block; 
-            pointer-events: auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        /* Hide Spline logo and watermark */
-        .spline-hero spline-viewer::part(logo),
-        .spline-hero spline-viewer::part(watermark),
-        .spline-hero spline-viewer a[href*="spline"],
-        spline-viewer::shadow a[href*="spline"] {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-        }
-        /* Target Spline viewer shadow DOM logo */
-        .spline-hero spline-viewer /deep/ a[href*="spline"],
-        .spline-hero spline-viewer >>> a[href*="spline"] {
-            display: none !important;
-        }
-        .spline-hero .home__hero-container {
-            position: relative;
-            z-index: 10;
-            pointer-events: none;
-            transform: translateY(-220px) !important;
-            margin-top: 0;
-        }
-        .spline-hero .home__hero-container * {
-            pointer-events: none;
-        }
-        .spline-hero .ts-h1 {
-            color: white !important;
-        }
-        .spline-hero .ts-subtitle--h1 {
-            color: white !important;
-        }
-        .spline-hero .button {
-            color: white !important;
-            pointer-events: auto !important;
-            cursor: pointer !important;
-            position: relative;
-            z-index: 11;
-        }
-        .spline-hero .button div {
-            color: white !important;
-        }
-        .spline-hero a {
-            pointer-events: auto !important;
-        }
-        @media (prefers-reduced-motion: reduce) { .spline-hero .spline-bg { display: none; } }
         /* Spline viewer in 2col section - wider and properly sized */
         ._2col__layout {
             grid-template-columns: 48% 52% !important;
@@ -276,74 +169,7 @@
                 min-height: 500px;
             }
         }
-        
-        /* Mobile: Hide Spline and use static gradient background */
-        @media (max-width: 767px) {
-            .spline-hero .spline-bg {
-                display: none !important;
-            }
-            
-            .spline-hero {
-                background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 30%, #1a1a2e 60%, #16213e 100%);
-                background-attachment: fixed;
-                position: relative;
-            }
-            
-            .spline-hero::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: 
-                    radial-gradient(circle at 20% 30%, rgba(0, 102, 255, 0.15) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 70%, rgba(30, 58, 138, 0.15) 0%, transparent 50%);
-                pointer-events: none;
-                z-index: 1;
-            }
-            
-            .spline-hero .home__hero-container {
-                transform: translateY(0) !important;
-                position: relative;
-                z-index: 10;
-                padding: 2rem 1.5rem;
-            }
-            
-            .spline-hero {
-                min-height: 80vh;
-            }
-        }
     </style>
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.90/build/spline-viewer.js"></script>
-    <script>
-        // Hide Spline logo after viewer loads
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                const viewer = document.querySelector('spline-viewer');
-                if (viewer) {
-                    const shadowRoot = viewer.shadowRoot;
-                    if (shadowRoot) {
-                        const logo = shadowRoot.querySelector('a[href*="spline"], a[href*="spline.design"]');
-                        if (logo) {
-                            logo.style.display = 'none';
-                            logo.style.visibility = 'hidden';
-                            logo.style.opacity = '0';
-                        }
-                        // Also try to find by class or other selectors
-                        const allLinks = shadowRoot.querySelectorAll('a');
-                        allLinks.forEach(link => {
-                            if (link.href && (link.href.includes('spline') || link.textContent.includes('Spline'))) {
-                                link.style.display = 'none';
-                                link.style.visibility = 'hidden';
-                                link.style.opacity = '0';
-                            }
-                        });
-                    }
-                }
-            }, 1000);
-        });
-    </script>
 </head>
 
 <body lvl-ix-global-disable-fast-animate="true" lvl-ix-global-disable-repeat="true" class="body-reskin">
@@ -385,113 +211,6 @@
         </header>
 
         <main class="main-wrapper">
-            <section class="home__hero">
-                <div class="padding-global">
-                <div class="spline-hero">
-                    <div class="spline-bg">
-                        <spline-viewer url="https://prod.spline.design/YUyQch63NPu5SMwj/scene.splinecode"></spline-viewer>
-                    </div>
-                    <div data-w-id="52402962-2949-7c24-99b2-62ebf2ba09fe"
-                        style="position:relative; z-index:1; -webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
-                        class="home__hero-container no-gap">
-                        <h1 data-w-id="f570f0ea-5009-c617-f648-242bb6a4ec76" class="ts-h1">Derya AI</h1>
-                        <div class="spacer is-kiwi-lavender"></div>
-                        <div class="max-width-cyan">
-                            <p class="ts-subtitle--h1">The AI employee to manage all manual and automated freight
-                                forwarding workflow.</p>
-                        </div>
-                    </div>
-                </div>
-
-                    <!-- Commented out LOGOS of  CUSTOMERS ETC. -oguzhan -->
-                    <!--
-            <div data-w-id="c607b703-d685-456f-4470-ce7aff910093" class="home__hero_illustration"
-              data-animation-type="lottie"
-              data-src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/688e085dd965015d4e39f38a_merge.json"
-              data-loop="1" data-direction="1" data-autoplay="1" data-is-ix2-target="0" data-renderer="svg"
-              data-default-duration="0" data-duration="0"></div>
-                </div>
-            </section>
-
-      <section class="logos-tabs">
-        <div class="padding-global is-mobile-none">
-          <div class="container-l">
-            <div class="css_logo-tabs w-embed"></div>
-            <div data-current="Tab 1" data-easing="ease-out" data-duration-in="300" data-duration-out="100"
-              class="logos-tabs_tabs w-tabs">
-              <div class="logos-tabs_menu w-tab-menu">
-                <a data-w-tab="Tab 1" class="logos-tabs_link w-inline-block w-tab-link w--current">
-                  <div class="logos-tabs_link-text">
-                    cutting-edge AI companies,
-                  </div>
-                  <div class="logos-tabs_link-underline">
-                  </div>
-                </a><a data-w-tab="Tab 2" class="logos-tabs_link w-inline-block w-tab-link">
-                  <div class="logos-tabs_link-text">
-                    leading financial services and firms,
-                  </div>
-                  <div class="logos-tabs_link-underline">
-                  </div>
-                </a><a data-w-tab="Tab 3" class="logos-tabs_link w-inline-block w-tab-link">
-                  <div class="logos-tabs_link-text">
-                    and top enterprise SaaS providers
-                  </div>
-                  <div class="logos-tabs_link-underline"></div>
-                </a>
-              </div>
-              
-              <div class="logos-tabs_content w-tab-content">
-                <div data-w-tab="Tab 1" class="logos-tabs_pane w-tab-pane w--tab-active">
-                  <div class="logos-tabs_grid"><img loading="lazy"
-                      src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685ebd0628c225d6274940ea_OpenAI%20logo.png"
-                      alt="" class="logos-tabs_logo"><img loading="lazy"
-                      src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685ec1a8a21d809555c59d35_mistral%20adjusted.png"
-                      alt="" class="logos-tabs_logo"><img loading="lazy"
-                      src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0f598e7f0d0b872f436_Freshworks%20Inc_idTi07iyIh_0%201.png"
-                      alt="" class="logos-tabs_logo"><img loading="lazy"
-                      src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0f1033e20adfcf37050_Guru%201.png"
-                      alt="" class="logos-tabs_logo"><img loading="lazy"
-                      src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/686443cb82009faa6341040f_contextual%20ai%20homepage.png"
-                      alt="" class="logos-tabs_logo"><img loading="lazy"
-                      src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0f1ec67448005f8eeb6_ema-logo%201.png"
-                      alt="" class="logos-tabs_logo"></div>
-                </div> -->
-                    <!-- Again, some commented out LOGOS of  CUSTOMERS ETC. -oguzhan -->
-                    <!--
-                <div data-w-tab="Tab 2" class="logos-tabs_pane w-tab-pane">
-                <div class="logos-tabs_grid"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0f1c89fd8303f9fe15c_%23000000ff.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0f28bbe4f87e619d822_Revolut%201.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0f1c3016ab3b5ffde82_Frame.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0f1e8b409c984ff0a05_bill-logo%201.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0ef10e22bf179a1f657_Frame%202087327441.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0ee2dc29ed5b8b8d737_Frame%202087327440.png"
-                        alt="" class="logos-tabs_logo"></div>
-            </div>
-            <div data-w-tab="Tab 3" class="logos-tabs_pane w-tab-pane">
-                <div class="logos-tabs_grid"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0ef185681649a6c86fc_bamboohr.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0ef22626e029e391792_korn-ferry-vector-logo-2022%201.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf3f6e8b409c98400f079_Drata.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/685bf0f252ba7949d550bde2_BetterHelp_idbrzR1WWj_1%201.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/6864544cce5df701582c14d1_angellist.png"
-                        alt="" class="logos-tabs_logo"><img loading="lazy"
-                        src="https://cdn.prod.website-files.com/624b192df0b0151225c10026/6864544cfd0338cbf8149458_lattice%20adjusted.png"
-                        alt="" class="logos-tabs_logo"></div>
-            </div>
-    </div> -->
-
-
-            </section>
             <div class="_2col__component">
                 <div class="padding-global">
                     <div class="container-l">
@@ -499,7 +218,7 @@
                             <div data-w-id="0ed67830-a3ca-48ac-d240-157fd1aea70e"
                                 style="-webkit-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 2rem, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);opacity:0"
                                 class="_2col__text-wr">
-                                <h2 data-w-id="f0eaa1e9-ae7b-182b-d9e2-ab6ab52bf176" class="ts-h2"><span class="heading-text-nowrap" style="white-space: nowrap;">Your AI employee for</span><br><span class="rotating-text-blue"><span class="rotating-word-blue">compliance</span></span>
+                                <h2 data-w-id="f0eaa1e9-ae7b-182b-d9e2-ab6ab52bf176" class="ts-h2"><span class="heading-text-nowrap" style="white-space: nowrap;">Your AI employee for</span><br><span class="rotating-text-blue"><span class="rotating-word-blue">sales</span></span>
                                 </h2>
                                 <p class="ts-p">Automate port calls, customs, procurement, and finance workflows — replace manual processes with intelligent automation that works 24/7.</p><a href="https://calendar.app.google/hjwR3jbaEpQuoCyJ7"
                                     class="button w-inline-block">
@@ -1257,7 +976,7 @@
     <!-- Rotating Text Animation (Blue) -->
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const words = ['compliance', 'procurement', 'lead gen'];
+            const words = ['sales', 'pricing', 'operations'];
             const rotatingWordElement = document.querySelector('.rotating-word-blue');
             let currentIndex = 0;
 

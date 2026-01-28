@@ -11,6 +11,19 @@
   transform: translateX(-2px);
 }
 
+/* Generic Lorem Ipsum Anchor Component */
+.lorem-anchor {
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.lorem-anchor .button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 /* Swiper Components */
 .swiper-pagination {
   position: static !important;
@@ -922,10 +935,6 @@ section.home__hero {
   margin: 0 auto;
 }
 
-.footer {
-  border-top: 1px solid #e5e7eb;
-  width: 100%;
-}
 
 .footer__clean-left {
   display: flex;
@@ -940,6 +949,8 @@ section.home__hero {
 .footer__copyright {
   color: #6b7280;
   font-size: 14px;
+  font-weight: 400;
+  white-space: nowrap;
 }
 
 .footer__clean-right {
@@ -975,7 +986,9 @@ section.home__hero {
   .cta__content-wrapper {
     padding: 2rem 1.5rem;
   }
+  
 }
+
 
 .cta__visual {
   position: relative;

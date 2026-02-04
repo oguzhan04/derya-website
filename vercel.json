@@ -1,5 +1,11 @@
 {
   "version": 2,
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/ff-dashboard",
+      "destination": "http://165.232.83.32:3001/"
+    }
+  ]
 }

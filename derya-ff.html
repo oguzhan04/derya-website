@@ -815,6 +815,46 @@
             -ms-overflow-style: none;
         }
 
+        .ff-dashboard__cta {
+            flex: 1;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            padding: 3rem 2rem;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            text-align: center;
+        }
+
+        .ff-dashboard__cta p {
+            color: #64748b;
+            font-size: 1rem;
+            margin: 0;
+            max-width: 360px;
+        }
+
+        .ff-dashboard__cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%);
+            color: white !important;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 102, 255, 0.3);
+        }
+
+        .ff-dashboard__cta-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.4);
+        }
+
         /* Responsive */
         @media (max-width: 991px) {
             .ff-workflow__columns {
@@ -1639,16 +1679,9 @@
                             <div class="ff-dashboard__header-badge">Interactive</div>
                         </div>
                         <div class="ff-dashboard__iframe-container">
-                            <div class="ff-dashboard__iframe-wrapper">
-                                <iframe 
-                                    src="http://165.232.83.32:3001/" 
-                                    class="ff-dashboard__iframe"
-                                    frameborder="0"
-                                    allowfullscreen
-                                    allow="clipboard-read; clipboard-write; fullscreen"
-                                    sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation"
-                                    title="Derya FF Dashboard Demo">
-                                </iframe>
+                            <div class="ff-dashboard__cta">
+                                <p>Open the interactive dashboard in a new tab to explore live rates and procurement tools.</p>
+                                <a href="http://165.232.83.32:3001/" target="_blank" rel="noopener noreferrer" class="ff-dashboard__cta-link">Open Live Dashboard →</a>
                             </div>
                         </div>
                     </div>

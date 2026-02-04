@@ -6,6 +6,18 @@
     {
       "source": "/ff-dashboard",
       "destination": "http://165.232.83.32:3001/"
+    },
+    {
+      "source": "/ff-dashboard/:path*",
+      "destination": "http://165.232.83.32:3001/:path*"
+    },
+    {
+      "source": "/next/:path*",
+      "destination": "http://165.232.83.32:3001/next/:path*"
+    },
+    {
+      "source": "/_next/:path*",
+      "destination": "http://165.232.83.32:3001/_next/:path*"
     }
   ]
 }

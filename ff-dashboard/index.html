@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FCL Export Request — Derya Quoting</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f4f5;
+      --surface: #ffffff;
+      --ink: #0a0a0a;
+      --muted: #52525b;
+      --muted2: #71717a;
+      --border: rgba(15, 23, 42, 0.1);
+      --hairline: rgba(15, 23, 42, 0.08);
+      --border-subtle: rgba(15, 23, 42, 0.06);
+      --accent: #1547d1;
+      --accent-bright: #3b7cff;
+      --accent-soft: rgba(23, 84, 216, 0.09);
+      --accent-bar: #2563eb;
+      --violet-glow: rgba(99, 102, 241, 0.12);
+      --row-hover: #eef1f6;
+      --row-stripe: #f7f8fa;
+      --row-rec: rgba(37, 99, 235, 0.07);
+      --row-rec-hover: rgba(37, 99, 235, 0.12);
+      --shadow-card: 0 0 0 1px var(--border-subtle), 0 1px 2px rgba(15, 23, 42, 0.04), 0 16px 40px rgba(15, 23, 42, 0.07);
+      --font-display: "Plus Jakarta Sans", Inter, system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      --success: #059669;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    * { box-sizing: border-box; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-size: 13px;
+      color: var(--ink);
+      background-color: var(--bg);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+      background-image:
+        radial-gradient(ellipse 120% 90% at 50% -30%, rgba(59, 124, 255, 0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 100% 0%, var(--violet-glow) 0%, transparent 45%),
+        radial-gradient(ellipse 60% 45% at 0% 20%, rgba(14, 165, 233, 0.06) 0%, transparent 50%),
+        repeating-linear-gradient(90deg, transparent, transparent 35px, rgba(15, 23, 42, 0.028) 35px, rgba(15, 23, 42, 0.028) 36px),
+        repeating-linear-gradient(0deg, transparent, transparent 35px, rgba(15, 23, 42, 0.028) 35px, rgba(15, 23, 42, 0.028) 36px);
+      background-attachment: fixed;
+    }
+    .app {
+      min-height: 100vh;
+      padding: 22px 20px 96px;
+      max-width: 1180px;
+      margin: 0 auto;
+      position: relative;
+    }
+    @keyframes rise-in {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .app .page-head {
+        animation: rise-in 0.55s var(--ease-out) backwards;
+      }
+      .app .card {
+        animation: rise-in 0.6s var(--ease-out) backwards;
+      }
+      .app .card:nth-of-type(1) { animation-delay: 0.07s; }
+      .app .card:nth-of-type(2) { animation-delay: 0.14s; }
+      .app .demo-tag {
+        animation: rise-in 0.55s var(--ease-out) 0.2s backwards;
+      }
+    }
+    /* Page header */
+    .page-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .page-intro {
+      flex: 1;
+      min-width: min(100%, 280px);
+    }
+    .page-kicker {
+      margin: 0 0 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .page-title {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-size: clamp(1.25rem, 3.5vw, 1.5rem);
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .page-title-highlight {
+      background: linear-gradient(135deg, #0f172a 0%, #334155 40%, var(--accent-bright) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @supports not (background-clip: text) {
+      .page-title-highlight { color: var(--accent); background: none; }
+    }
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .page-meta-item {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 7px 12px;
+      border-radius: 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.05), 0 2px 8px rgba(15, 23, 42, 0.04);
+      backdrop-filter: blur(8px);
+    }
+    .page-meta-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+    .page-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .btn-ghost {
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--hairline);
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      transition: background 0.15s var(--ease), border-color 0.15s var(--ease), box-shadow 0.15s var(--ease), transform 0.15s var(--ease);
+    }
+    .btn-ghost:hover {
+      background: var(--row-hover);
+      border-color: #d8dce3;
+    }
+    .btn-ghost:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px rgba(37, 99, 235, 0.35);
+    }
+    .btn-ghost:active { transform: scale(0.98); }
+    .btn-more::after {
+      content: "▾";
+      margin-left: 4px;
+      font-size: 11px;
+      opacity: 0.7;
+    }
+    /* Carrier card */
+    .card {
+      position: relative;
+      background: linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%);
+      border: 1px solid var(--hairline);
+      border-radius: 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(59, 124, 255, 0.45) 35%,
+        rgba(129, 140, 248, 0.35) 55%,
+        transparent 100%
+      );
+      opacity: 0.9;
+      pointer-events: none;
+    }
+    .card:hover {
+      box-shadow:
+        0 0 0 1px rgba(15, 23, 42, 0.05),
+        0 8px 24px rgba(15, 23, 42, 0.07),
+        0 24px 56px rgba(37, 99, 235, 0.06);
+      transform: translateY(-1px);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .card:hover { transform: none; }
+    }
+    .card-head {
+      padding: 18px 20px 14px;
+      border-bottom: 1px solid var(--hairline);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.5) 100%);
+    }
+    .card-head-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .card-title {
+      margin: 0 0 6px;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.035em;
+      line-height: 1.2;
+    }
+    .card-sub {
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted2);
+      font-weight: 400;
+      line-height: 1.45;
+      max-width: 42rem;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+    .chip {
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--hairline);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: background 0.15s var(--ease), border-color 0.15s var(--ease), color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+    }
+    .chip:hover { background: var(--row-hover); border-color: #d4d4d8; }
+    .chip:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px rgba(37, 99, 235, 0.35);
+    }
+    .chip.on {
+      background: var(--ink);
+      color: #fff;
+      border-color: var(--ink);
+      box-shadow: 0 1px 2px rgba(10, 15, 26, 0.12);
+    }
+    .chip.cal {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .chip.cal svg { width: 14px; height: 14px; opacity: 0.85; }
+    /* Table */
+    .scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #c9ced6 transparent;
+    }
+    .scroll::-webkit-scrollbar { height: 8px; }
+    .scroll::-webkit-scrollbar-track { background: transparent; }
+    .scroll::-webkit-scrollbar-thumb {
+      background: #c9ced6;
+      border-radius: 999px;
+    }
+    .scroll::-webkit-scrollbar-thumb:hover { background: #aeb5c0; }
+    table {
+      width: 100%;
+      min-width: 980px;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted2);
+      background: linear-gradient(180deg, #fafbfc 0%, #f1f3f7 100%);
+      border-bottom: 1px solid var(--hairline);
+      white-space: nowrap;
+    }
+    td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--hairline);
+      vertical-align: middle;
+      color: var(--ink);
+      transition: background 0.12s var(--ease);
+    }
+    tbody tr:nth-child(even) td { background: var(--row-stripe); }
+    tr:last-child td { border-bottom: none; }
+    tbody tr:hover td { background: var(--row-hover); }
+    tr.rec td {
+      background: var(--row-rec);
+    }
+    tr.rec:hover td {
+      background: var(--row-rec-hover);
+    }
+    tr.rec td:first-child {
+      box-shadow: inset 3px 0 0 0 var(--accent-bar);
+    }
+    .carrier-cell {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 140px;
+    }
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #e8ecf1, #cbd5e1);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow:
+        0 0 0 1px rgba(15, 23, 42, 0.06),
+        0 2px 6px rgba(15, 23, 42, 0.06);
+    }
+    tr.rec .avatar {
+      background: linear-gradient(145deg, #dbeafe, #93c5fd);
+      color: #1e3a8a;
+      box-shadow:
+        0 0 0 1px rgba(37, 99, 235, 0.2),
+        0 2px 8px rgba(37, 99, 235, 0.15);
+    }
+    .carrier-name {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: -0.025em;
+    }
+    .badge-rec {
+      display: inline-block;
+      margin-top: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: linear-gradient(180deg, #eff6ff 0%, #e8f0fe 100%);
+      padding: 3px 7px;
+      border-radius: 6px;
+      border: 1px solid rgba(37, 99, 235, 0.12);
+    }
+    .muted { color: var(--muted); }
+    .num {
+      font-family: var(--font-mono);
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: -0.02em;
+      color: #0b1220;
+    }
+    .hint { font-size: 11px; color: var(--muted2); }
+    /* Bottom bar */
+    .ready-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px) saturate(1.2);
+      -webkit-backdrop-filter: blur(16px) saturate(1.2);
+      border-top: 1px solid var(--hairline);
+      box-shadow: 0 -12px 40px rgba(15, 23, 42, 0.08);
+      z-index: 10;
+    }
+    .ready-bar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--success) 20%, var(--accent-bright) 50%, var(--success) 80%, transparent);
+      opacity: 0.65;
+      pointer-events: none;
+    }
+    .ready-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .ready-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2);
+    }
+    .ready-title {
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      margin: 0 0 2px;
+    }
+    .ready-sub {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .chev {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted2);
+      padding: 6px;
+      border-radius: 8px;
+      transition: background 0.15s var(--ease), color 0.15s var(--ease);
+    }
+    .chev svg { display: block; }
+    .ready-bar:hover .chev {
+      background: var(--row-hover);
+      color: var(--muted);
+    }
+    .demo-tag {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted2);
+      padding: 16px 0 0;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="page-head">
+      <div class="page-intro">
+        <p class="page-kicker">Ocean freight · FCL export</p>
+        <h1 class="page-title">FCL Export Request — <span class="page-title-highlight">LA to Shanghai</span></h1>
+        <ul class="page-meta" role="list">
+          <li class="page-meta-item"><span class="page-meta-label">Route</span> USLAX → CNSHA</li>
+          <li class="page-meta-item"><span class="page-meta-label">Incoterms</span> FOB</li>
+          <li class="page-meta-item"><span class="page-meta-label">ETD</span> Mar 8 – Mar 22</li>
+          <li class="page-meta-item"><span class="page-meta-label">Containers</span> 1×40HC</li>
+        </ul>
+      </div>
+      <div class="page-actions">
+        <button type="button" class="btn-ghost">Inbox</button>
+        <button type="button" class="btn-ghost btn-more">More</button>
+      </div>
+    </header>
+
+    <section class="card" aria-labelledby="maj-title">
+      <div class="card-head">
+        <div class="card-head-top">
+          <div>
+            <h2 id="maj-title" class="card-title">Major carriers</h2>
+            <p class="card-sub">Quotes from major carriers with direct API integration.</p>
+          </div>
+          <div class="filters" role="group" aria-label="Quote status">
+            <button type="button" class="chip">Pending: 2</button>
+            <button type="button" class="chip on">Received: 3</button>
+            <button type="button" class="chip cal" aria-label="Show calendar">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+              Show calendar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Carrier</th>
+              <th>Rates</th>
+              <th>Total 20DRY</th>
+              <th>Total 40DRY</th>
+              <th>Total 40HC</th>
+              <th>Loading</th>
+              <th>Validity</th>
+              <th>Service</th>
+              <th>Transship</th>
+              <th>Transit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="rec">
+              <td>
+                <div class="carrier-cell">
+                  <span class="avatar" aria-hidden="true">CL</span>
+                  <div>
+                    <div class="carrier-name">COSCO</div>
+                    <span class="badge-rec">Recommended</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="muted">Ocean Alliance · Wood</span></td>
+              <td class="num">$2,180</td>
+              <td class="num">$2,640</td>
+              <td class="num">$2,890</td>
+              <td>Yes*</td>
+              <td><span class="hint">Spot for ETD</span></td>
+              <td>AEU5</td>
+              <td>Direct</td>
+              <td class="num">32 days</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="carrier-cell">
+                  <span class="avatar" aria-hidden="true">MA</span>
+                  <div class="carrier-name">Maersk</div>
+                </div>
+              </td>
+              <td><span class="muted">Maersk spot</span></td>
+              <td class="num">$2,245</td>
+              <td class="num">$2,710</td>
+              <td class="num">$2,980</td>
+              <td>Yes</td>
+              <td><span class="hint">Mar 2 – Apr 15</span></td>
+              <td>FAL2</td>
+              <td>Direct</td>
+              <td class="num">45 days</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="carrier-cell">
+                  <span class="avatar" aria-hidden="true">GX</span>
+                  <div class="carrier-name">GreenX</div>
+                </div>
+              </td>
+              <td><span class="muted">GreenX index</span></td>
+              <td class="num">$2,310</td>
+              <td class="num">$2,780</td>
+              <td class="num">$3,050</td>
+              <td>—</td>
+              <td><span class="hint">Rolling 7d</span></td>
+              <td>—</td>
+              <td>Direct</td>
+              <td class="num">38 days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="reg-title">
+      <div class="card-head">
+        <div class="card-head-top">
+          <div>
+            <h2 id="reg-title" class="card-title">Regional carriers</h2>
+            <p class="card-sub">Quotes from regional carriers via email request.</p>
+          </div>
+          <div class="filters">
+            <button type="button" class="chip">Pending: 1</button>
+            <button type="button" class="chip on">Received: 1</button>
+          </div>
+        </div>
+      </div>
+      <div class="scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Carrier</th>
+              <th>Rates</th>
+              <th>Total 20DRY</th>
+              <th>Total 40DRY</th>
+              <th>Total 40HC</th>
+              <th>Loading</th>
+              <th>Validity</th>
+              <th>Service</th>
+              <th>Transship</th>
+              <th>Transit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="carrier-cell">
+                  <span class="avatar" aria-hidden="true">SM</span>
+                  <div class="carrier-name">SM Line</div>
+                </div>
+              </td>
+              <td><span class="muted">Email quote #4481</span></td>
+              <td class="num">$2,420</td>
+              <td class="num">$2,950</td>
+              <td class="num">$3,120</td>
+              <td>Yes</td>
+              <td><span class="hint">Subject to space</span></td>
+              <td>PS8</td>
+              <td>Busan</td>
+              <td class="num">41 days</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <p class="demo-tag">Demo data · Derya Quoting marketing preview</p>
+  </div>
+
+  <div class="ready-bar">
+    <div class="ready-inner">
+      <div class="ready-left">
+        <span class="dot" aria-hidden="true"></span>
+        <div>
+          <p class="ready-title">Quote ready to send</p>
+          <p class="ready-sub">Draft email prepared for customer.</p>
+        </div>
+      </div>
+      <span class="chev" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </div>
+  </div>
+</body>
+</html>

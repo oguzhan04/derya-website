@@ -2,15 +2,29 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/mailport",
+      "destination": "/crm",
+      "permanent": true
+    },
+    {
+      "source": "/mailport.html",
+      "destination": "/crm.html",
+      "permanent": true
+    },
+    {
+      "source": "/derya-ff",
+      "destination": "/derya-quoting",
+      "permanent": true
+    },
+    {
+      "source": "/derya-ff.html",
+      "destination": "/derya-quoting.html",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    {
-      "source": "/ff-dashboard",
-      "destination": "http://165.232.83.32:3001/"
-    },
-    {
-      "source": "/ff-dashboard/:path*",
-      "destination": "http://165.232.83.32:3001/:path*"
-    },
     {
       "source": "/next/:path*",
       "destination": "http://165.232.83.32:3001/next/:path*"

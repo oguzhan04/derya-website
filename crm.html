@@ -3,18 +3,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Derya CRM — pipeline, accounts, and revenue for freight forwarders. Shipment-aware deals, lane context, and a clean handoff to Derya Quoting and AI Employee.">
+    <meta name="description" content="Derya CRM — freight accounts, lanes, RFQs, jobs, and revenue context inside the Derya Freight OS workbench.">
     <meta name="theme-color" content="#070a12">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.usederya.com/crm.html">
-    <meta property="og:title" content="Derya CRM — Freight revenue, shipment-aware">
-    <meta property="og:description" content="Run pipeline and accounts with lane and shipment context — integrated with quoting, operations, and email.">
+    <meta property="og:title" content="Derya CRM — Freight accounts inside the workbench">
+    <meta property="og:description" content="Run pipeline and accounts with lane, quote, job, inbox, and shipment context in one freight operating surface.">
     <meta property="og:site_name" content="Derya">
     <meta property="og:image" content="https://www.usederya.com/images/derya%20logo%20top%20left.png">
     <meta name="twitter:image" content="https://www.usederya.com/images/derya%20logo%20top%20left.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Derya CRM — Freight revenue, shipment-aware">
-    <title>Derya CRM — Freight revenue &amp; pipeline | Derya</title>
+    <meta name="twitter:title" content="Derya CRM — Freight accounts inside the workbench">
+    <title>Derya CRM — Freight accounts &amp; pipeline | Derya</title>
     <link rel="canonical" href="https://www.usederya.com/crm.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,58 +49,83 @@
         <section class="crm-page__hero" aria-labelledby="crm-hero-title">
             <div class="crm-page__hero-inner">
                 <div>
-                    <p class="crm-page__eyebrow">Commercial · Revenue</p>
+                    <p class="crm-page__eyebrow">Commercial · Freight OS</p>
                     <h1 class="crm-page__title" id="crm-hero-title">
-                        CRM that speaks <span class="crm-page__title-accent">freight</span>, not generic SaaS
+                        CRM inside the <span class="crm-page__title-accent">freight workbench</span>
                     </h1>
                     <p class="crm-page__lead">
-                        Pipeline, accounts, and activities grounded in lanes, carriers, and live shipment context — so sales sees what operations sees, and forecasts match what actually moves.
+                        Accounts, owners, RFQs, jobs, lanes, activity, and quote history stay attached to the operational context your team already uses.
                     </p>
                     <div class="crm-page__hero-actions">
                         <a class="btn btn--primary" href="https://calendar.app.google/hjwR3jbaEpQuoCyJ7" rel="noopener noreferrer">Book a CRM walkthrough</a>
-                        <a class="btn btn--secondary" href="/ai-employee.html">Works with AI Employee</a>
+                        <a class="btn btn--secondary" href="/">See Freight OS</a>
                     </div>
                 </div>
                 <div class="crm-page__mock" aria-label="Example CRM interface">
                     <div class="crm-page__mock-top">
                         <div class="crm-page__mock-dots" aria-hidden="true"><span></span><span></span><span></span></div>
-                        <span class="crm-page__mock-breadcrumb">CRM / Accounts / Acme Logistics</span>
-                        <span class="crm-page__mock-badge">Synced</span>
+                        <span class="crm-page__mock-breadcrumb">Dashboard / Customers / Atlas Foods</span>
+                        <span class="crm-page__mock-badge">Live context</span>
                     </div>
                     <div class="crm-page__mock-body">
                         <aside class="crm-page__mock-sidebar">
-                            <div class="crm-page__mock-sidebar-title">Accounts</div>
-                            <div class="crm-page__mock-account is-active">Acme Logistics</div>
-                            <div class="crm-page__mock-account">Nordic Shippers</div>
-                            <div class="crm-page__mock-account">Blue Ocean</div>
+                            <div class="crm-page__mock-brand">
+                                <span>D</span>
+                                <strong>Derya</strong>
+                                <small>Freight OS</small>
+                            </div>
+                            <div class="crm-page__mock-sidebar-title">Records</div>
+                            <div class="crm-page__mock-account">Jobs</div>
+                            <div class="crm-page__mock-account">Inbox</div>
+                            <div class="crm-page__mock-account is-active">Customers</div>
+                            <div class="crm-page__mock-account">Control Center</div>
                         </aside>
                         <div class="crm-page__mock-main">
-                            <div class="crm-page__mock-pipeline">
-                                <span class="crm-page__mock-stage">Lead</span>
-                                <span class="crm-page__mock-stage">Qualify</span>
-                                <span class="crm-page__mock-stage is-current">Proposal</span>
-                                <span class="crm-page__mock-stage">Negotiate</span>
-                                <span class="crm-page__mock-stage">Closed</span>
+                            <div class="crm-page__mock-search">
+                                <span>Search customers, lanes, contacts...</span>
+                                <strong>18 active</strong>
+                            </div>
+                            <div class="crm-page__mock-focus">
+                                <span class="crm-page__mock-live" aria-hidden="true"></span>
+                                <strong>FOCUSED</strong>
+                                <span>Atlas Foods</span>
+                                <span>SHA &rarr; LAX</span>
+                                <em>Pricing</em>
                             </div>
                             <div class="crm-page__mock-deal">
-                                <p class="crm-page__mock-deal-name">Annual FCL program · Asia → US West Coast</p>
-                                <p class="crm-page__mock-deal-meta">Owner: you · Last touch 2h ago · 6 open shipments</p>
+                                <div>
+                                    <p class="crm-page__mock-deal-name">Atlas Foods</p>
+                                    <p class="crm-page__mock-deal-meta">Owner: Mert · Last touch 2h ago · 6 open jobs</p>
+                                </div>
                                 <div class="crm-page__mock-deal-row">
-                                    <span class="crm-page__mock-tcv">$1.24M TCV</span>
-                                    <span class="crm-page__mock-win">78% win prob.</span>
+                                    <span class="crm-page__mock-tcv">$1.24M</span>
+                                    <span class="crm-page__mock-win">Worked account</span>
                                 </div>
                             </div>
                             <div>
-                                <div class="crm-page__mock-activity-title">Activity</div>
-                                <ul class="crm-page__mock-activity">
-                                    <li>Quote revision sent — Derya Quoting (Maersk + niche line)</li>
-                                    <li>Ops flagged delay on SHA origin — AI Employee task opened</li>
-                                    <li>Call logged · renewal Q3 discussed</li>
-                                </ul>
+                                <div class="crm-page__mock-activity-title">Account lanes</div>
+                                <div class="crm-page__mock-table">
+                                    <div class="crm-page__mock-row crm-page__mock-row--head">
+                                        <span>Lane</span><span>Product</span><span>Last quote</span><span>Status</span>
+                                    </div>
+                                    <div class="crm-page__mock-row">
+                                        <span>SHA &rarr; LAX</span><span>FCL</span><span>$4,180</span><span class="good">Quoted</span>
+                                    </div>
+                                    <div class="crm-page__mock-row">
+                                        <span>QNG &rarr; IST</span><span>LCL</span><span>$940</span><span>Follow-up</span>
+                                    </div>
+                                    <div class="crm-page__mock-row">
+                                        <span>Mersin &rarr; NYC</span><span>Air</span><span>$8.40/kg</span><span>Renewal</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="crm-page__mock-agent">
+                                <span>A</span>
+                                <p>Agent sees this account's jobs, RFQs, email, owners, and margin history before drafting the next action.</p>
                             </div>
                         </div>
                     </div>
-                    <p class="crm-page__mock-footnote">Illustrative UI · Integrates with Derya Quoting, AI Employee, email &amp; TMS</p>
+                    <p class="crm-page__mock-footnote">Product-shaped preview based on the live Derya CRM workbench</p>
                 </div>
             </div>
         </section>

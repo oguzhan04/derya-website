@@ -378,7 +378,7 @@
         }
 
         .ff-workflow__column-icon.json {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: white;
         }
 
@@ -588,7 +588,7 @@
 
         .ff-rates__price {
             font-weight: 700;
-            color: #059669;
+            color: #2563eb;
             font-size: 1rem;
         }
 
@@ -617,8 +617,8 @@
         }
 
         .ff-rates__source-badge.web {
-            background: rgba(16, 185, 129, 0.1);
-            color: #10b981;
+            background: rgba(37, 99, 235, 0.1);
+            color: #2563eb;
         }
 
         .ff-rates__source-badge.email {
@@ -1307,7 +1307,7 @@
     </style>
 </head>
 
-<body class="derya-site">
+<body class="derya-site quoting-page">
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="page-wrapper u-overflow-clip-x">
         <header class="site-header" role="banner">
@@ -1343,14 +1343,85 @@
             <section class="ff-hero">
                 <div class="ff-hero__orb ff-hero__orb--a" aria-hidden="true"></div>
                 <div class="ff-hero__orb ff-hero__orb--b" aria-hidden="true"></div>
-                <div class="ff-hero-container">
-                    <p class="ff-stat">75% of inbound forwarding contracts are lost on speed.</p>
-                    <h1 class="ts-h1">Be the first to quote.</h1>
-                    <p class="ff-description">
-                        Derya adaptive intelligence prices from both major carriers and niche lines.
-                    </p>
-                    <hr class="ff-hero__divider" aria-hidden="true" />
-                    <a href="https://calendar.app.google/i8QCrcQwMjBmhQv86" target="_blank" rel="noopener noreferrer" class="ff-hero__cta-button">Request a Demo</a>
+                <div class="ff-hero-container ff-hero-container--product">
+                    <div class="ff-hero__layout">
+                        <div class="ff-hero__copy">
+                            <p class="ff-stat">Derya Quoting</p>
+                            <h1 class="ts-h1">Be the first to quote.</h1>
+                            <p class="ff-description">
+                                Parse inbound RFQs, source carrier rates, compare options, and move the best quote forward from the same freight workbench.
+                            </p>
+                            <div class="ff-hero__actions">
+                                <a href="https://calendar.app.google/i8QCrcQwMjBmhQv86" target="_blank" rel="noopener noreferrer" class="ff-hero__cta-button">Request a demo</a>
+                                <a href="#quote-desk" class="ff-hero__secondary-button">See quote desk</a>
+                            </div>
+                            <dl class="ff-hero__signals" aria-label="Quoting coverage">
+                                <div>
+                                    <dt>Inbox</dt>
+                                    <dd>RFQs parsed into lanes</dd>
+                                </div>
+                                <div>
+                                    <dt>Rates</dt>
+                                    <dd>API, web, and email replies</dd>
+                                </div>
+                                <div>
+                                    <dt>Quotes</dt>
+                                    <dd>Best option ready to send</dd>
+                                </div>
+                            </dl>
+                        </div>
+
+                        <div class="ff-quote-console" aria-label="Derya Quoting product preview">
+                            <div class="ff-quote-console__top">
+                                <div class="ff-quote-console__dots" aria-hidden="true"><span></span><span></span><span></span></div>
+                                <span>Quote desk / Atlas Foods / JOB-2026-003</span>
+                                <strong>Live rates</strong>
+                            </div>
+                            <div class="ff-quote-console__body">
+                                <section class="ff-quote-console__card ff-quote-console__request">
+                                    <span class="ff-quote-console__eyebrow">Inbound RFQ</span>
+                                    <h2>Shanghai -> Los Angeles</h2>
+                                    <p>3 x 40HC soybean meal, ready June 28. Target price missing.</p>
+                                    <div class="ff-quote-console__chips">
+                                        <span>FCL</span>
+                                        <span>Food grade</span>
+                                        <span>Urgent</span>
+                                    </div>
+                                </section>
+                                <section class="ff-quote-console__card ff-quote-console__rates">
+                                    <div class="ff-quote-console__section-head">
+                                        <strong>Carrier comparison</strong>
+                                        <span>5 replies parsed</span>
+                                    </div>
+                                    <div class="ff-quote-console__table">
+                                        <div class="ff-quote-console__row ff-quote-console__row--head">
+                                            <span>Carrier</span><span>Transit</span><span>Rate</span><span>Status</span>
+                                        </div>
+                                        <div class="ff-quote-console__row is-selected">
+                                            <span>Maersk</span><span>18d</span><span>$4,180</span><span>Selected</span>
+                                        </div>
+                                        <div class="ff-quote-console__row">
+                                            <span>CMA CGM</span><span>21d</span><span>$4,092</span><span>Review</span>
+                                        </div>
+                                        <div class="ff-quote-console__row">
+                                            <span>MSC</span><span>23d</span><span>$4,260</span><span>Reply</span>
+                                        </div>
+                                    </div>
+                                </section>
+                                <aside class="ff-quote-console__agent">
+                                    <div class="ff-quote-console__agent-head">
+                                        <span>A</span>
+                                        <div>
+                                            <strong>Agent</strong>
+                                            <small>Pricing context ready</small>
+                                        </div>
+                                    </div>
+                                    <p>Fastest reliable option is Maersk. CMA is cheaper but misses the customer's requested delivery window.</p>
+                                    <button type="button">Draft quote</button>
+                                </aside>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -1916,7 +1987,7 @@
             </section>
 
             <!-- Section 3: Dashboard Frame -->
-            <section class="ff-dashboard">
+            <section class="ff-dashboard" id="quote-desk">
                 <div class="padding-global">
                     <div class="ff-dashboard__intro">
                         <p class="ff-dashboard__eyebrow">Live product</p>
@@ -2113,4 +2184,3 @@
 </body>
 
 </html>
-

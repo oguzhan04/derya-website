@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f1f3d" />
+    <meta name="robots" content="noindex" />
+    <title>Thank you | Derya</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;500;600;700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="images/derya-favicon-32.png" />
+    <link rel="apple-touch-icon" href="images/derya-favicon-180.png" />
+    <style>
+      .thanks-wrap {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 24px;
+        background: linear-gradient(165deg, #011f3d 0%, #023a5c 55%, #034a7a 100%);
+      }
+      .thanks-card {
+        max-width: 32rem;
+        width: 100%;
+        text-align: center;
+        background: var(--bg-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        padding: clamp(32px, 6vw, 56px);
+      }
+      .thanks-logo {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 28px;
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--text);
+      }
+      .thanks-logo img {
+        width: 30px;
+        height: 30px;
+      }
+      .thanks-check {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 20px;
+        color: var(--accent);
+      }
+      .thanks-title {
+        margin: 0 0 12px;
+        font-family: var(--font-display);
+        font-size: clamp(1.4rem, 3vw, 1.85rem);
+        font-weight: 700;
+        color: var(--text);
+      }
+      .thanks-text {
+        margin: 0 0 28px;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--text-secondary);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="thanks-wrap">
+      <div class="thanks-card">
+        <span class="thanks-logo">
+          <img src="images/derya-symbol.png" alt="" />
+          Derya
+        </span>
+        <svg class="thanks-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M8 12.5l2.5 2.5L16 9" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <h1 class="thanks-title" id="t-title">Inquiry received</h1>
+        <p class="thanks-text" id="t-text">
+          Thanks — your shipment details are with our team. We typically reply within one business day.
+        </p>
+        <a href="/" class="btn btn-primary" id="t-btn">Back to home</a>
+      </div>
+    </main>
+    <script>
+      (function () {
+        var copy = {
+          en: {
+            title: "Inquiry received",
+            text: "Thanks — your shipment details are with our team. We typically reply within one business day.",
+            btn: "Back to home",
+          },
+          tr: {
+            title: "Talebiniz alındı",
+            text: "Teşekkürler — sevkiyat bilgileriniz ekibimize ulaştı. Genellikle bir iş günü içinde yanıt veriyoruz.",
+            btn: "Ana sayfaya dön",
+          },
+        };
+        var lang = "en";
+        try {
+          var saved = localStorage.getItem("derya-lang");
+          if (saved === "tr") lang = "tr";
+        } catch (e) {}
+        var c = copy[lang];
+        document.documentElement.lang = lang;
+        document.getElementById("t-title").textContent = c.title;
+        document.getElementById("t-text").textContent = c.text;
+        document.getElementById("t-btn").textContent = c.btn;
+      })();
+    </script>
+  </body>
+</html>
